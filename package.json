@@ -10,8 +10,6 @@
   },
   "homepage": "https://FaberVitale.github.io/tictactoe",
   "license": "MIT",
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d build",
   "dependencies": {
     "mousetrap": "^1.6.1",
     "prop-types": "^15.6.0",
@@ -29,7 +27,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
