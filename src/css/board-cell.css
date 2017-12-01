@@ -1,0 +1,128 @@
+.board-cell {
+  font-size: inherit;
+  display: block;
+  box-shadow: inset 0px 0px 6px 2px rgba(16, 24, 37, 0.1);
+  position: relative;
+  border: 0;
+  padding: .3em;
+  width: 1.6em;
+  height: 1.6em;
+  outline-width: 0;
+}
+
+.board-row>button:nth-of-type(1),
+.board-row>button:nth-of-type(1)>.victory-overlay {
+  border-right: 1px solid hsl(216, 30%, 61%);
+}
+
+.board-row>button:nth-of-type(3),
+.board-row>button:nth-of-type(3)>.victory-overlay {
+  border-left: 1px solid hsl(216, 30%, 61%);
+}
+
+.board-row>button:nth-of-type(3)>.victory-overlay {
+  border-left: 1px solid hsl(216, 30%, 61%);
+  left: -1px;
+}
+
+.board-cell>p {
+  color: rgb(55, 59, 66);
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
+  width: 1em;
+  height: 1em;
+  line-height: 1em;
+  user-select: none;
+  z-index: 4;
+}
+
+.idle {
+  background-color: rgb(172, 193, 231);
+}
+
+.board-cell.idle:focus,
+.board-cell.idle:active {
+  background-color: hsl(219, 52%, 71%);
+}
+
+.victory-overlay {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1.6em;
+  height: 1.6em;
+  opacity: 0;
+  z-index: 0;
+  box-shadow: inset 0px 0px 6px 2px rgba(16, 24, 37, 0.1);
+  background-color: hsl(113, 50%, 73%);
+}
+
+.filled {
+  opacity: 1;
+}
+
+.empty {
+  opacity: 0;
+}
+
+.filled-animated {
+  animation-name: fadeIn;
+  animation-duration: .3s;
+  animation-timing-function: ease-out;
+  opacity: 1;
+}
+
+.victory>.victory-overlay {
+  animation-name: fadeIn;
+  animation-duration: .4s;
+  animation-fill-mode: forwards;
+  animation-delay: .3s;
+}
+
+.victory>p {
+  animation-name: increaseSize;
+  animation-duration: .4s;
+  animation-delay: .3s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+.board-cell.disabled {
+  background-color: rgb(159, 177, 207);
+}
+
+@media only screen and (min-device-width: 769px){
+  .idle:hover {
+    background-color: hsl(219, 65%, 77%);
+  }
+}
+
+@media only screen and (max-device-width: 768px){
+  .board-cell.idle:active {
+    background-color: hsl(219, 52%, 71%);
+  }
+}
+
+@media print {
+  .board-cell.victory,
+  .board-cell.idle,
+  .board-cell.disabled,
+  .board-cell.idle:active {
+    background-color: transparent;
+    color: black;
+    box-shadow: none;
+    border-bottom: 1px solid black;
+  }
+  .board-row>button:nth-of-type(1),
+  .board-row>button:nth-of-type(3) {
+    border-color: black;
+  }
+  .victory-overlay {
+    display: none;
+  }
+  .board-row:last-child .board-cell {
+    border-bottom: none;
+  }
+}

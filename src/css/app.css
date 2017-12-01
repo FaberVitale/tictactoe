@@ -1,0 +1,237 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background-color: rgb(225, 225, 230);
+  ;
+}
+
+
+/*
+ board width: 3.4em
+  content = 3 * (cells 1.6em) = 4.8em
+  board border = 2 * .2em = .4em
+  board(em) = 5.2em
+  
+  side bar = 1.6em
+  overall width(em) = 6.8em;
+
+  app: 6.8em
+  app margin left: 0.8em(1/2 of sidebar width) 
+*/
+
+#app {
+  font-family: Roboto, sans-serif;
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+#app>*,
+main>* {
+  flex-shrink: 0;
+}
+
+main {
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: row nowrap;
+  position: relative;
+}
+
+header {
+  width: 5.2em;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+  margin: .2em 0;
+}
+
+ul {
+  list-style: none;
+}
+
+kbd {
+  display: inline-block;
+  font-family: monospace;
+  font-size: .8em;
+  padding: 0 .4em;
+  vertical-align: text-bottom;
+  background-color: rgba(146, 162, 189, .5);
+  border-radius: 4px;
+  border-right: 2px solid rgba(146, 162, 189, 1);
+  border-bottom: 2px solid rgba(146, 162, 189, 1);
+}
+
+h1 {
+  color: rgba(117, 149, 202, 0.8);
+  text-align: center;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: .5em;
+}
+
+h3 {
+  font-size: 1em;
+  text-align: left;
+  margin: .5em 0;
+}
+
+section {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
+
+section>p {
+  line-height: 1.4em;
+}
+
+section+section {
+  margin-top: .8em;
+}
+
+@media only screen and (min-device-width: 769px) {
+  #app {
+    font-size: 100px;
+    /*the dimensions of this app scale with this property*/
+  }
+  h1 {
+    font-size: .6em;
+    margin-right: .1em;
+  }
+}
+
+@media only screen and (max-device-width: 768px) {
+  #app {
+    font-size: 15.5vmin;
+    width: 100%;
+    box-shadow: none;
+  }
+  h1 {
+    font-size: .95em;
+    margin-right: 0;
+    user-select: none;
+  }
+  main {
+    flex-flow: column nowrap;
+  }
+  header {
+    width: 5.2em;
+    padding-right: 0;
+  }
+}
+
+@media only print {
+  h1 {
+    color: black;
+  }
+  header {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 5.2em;
+    padding-right: 0;
+  }
+  body {
+    background-color: transparent;
+  }
+}
+
+.keybindings-list {
+  list-style: disc outside;
+}
+
+.keybindings-list>li+li {
+  margin-top: 5px;
+}
+
+
+/*removes the ugly dotted outline in firefox*/
+
+button::-moz-focus-inner {
+  border: 0;
+}
+
+button {
+  font-family: inherit;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    left: 0;
+  }
+  to {
+    left: -2.8em;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    left: -2.8em;
+  }
+  to {
+    left: 0;
+  }
+}
+
+@keyframes zoomOut {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(.1);
+  }
+}
+
+@keyframes increaseSize {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotateX(0deg);
+    transform-origin: 50% 50%;
+  }
+  to {
+    transform: rotateX(1440deg);
+    transform-origin: 50% 50%;
+  }
+}
