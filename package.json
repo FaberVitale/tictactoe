@@ -10,6 +10,8 @@
   },
   "homepage": "https://FaberVitale.github.io/tictactoe",
   "license": "MIT",
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build",
   "dependencies": {
     "mousetrap": "^1.6.1",
     "prop-types": "^15.6.0",
