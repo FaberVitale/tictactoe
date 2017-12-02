@@ -2,15 +2,22 @@
 
 A Tic Tac Toe game written with [React](https://reactjs.org/), [Redux](https://redux.js.org/) and [Create-react-app ](https://github.com/facebookincubator/create-react-app) boilerplate.
 
+* [play it here](https://fabervitale.github.io/tictactoe)
+
+* [Changelog](./CHANGELOG.md)
 
 ## Content
 * [Project Structure](#project-structure)
+
 * [Available Scripts](#available-scripts)
   - [npm install](#npm-install)
   - [npm start](#npm-start)
   - [npm test](#npm-test)
   - [npm run build](#npm-run-build)
   - [npm run eject](#npm-run-eject)
+  - [npm run predeploy](#npm-run-build)
+  - [npm run deploy](#npm-run-deploy)
+* [License](#license)
 
 <hr>
 
@@ -52,8 +59,17 @@ Checks if crashes.
 
 Minifies and optimizes the code.
 
+*alias npm run predeploy* 
+
 ### `npm run eject`
 
 **Don't do it**
 
-License: [MIT](/LICENSE) 
+### `npm run deploy`
+
+pushed the content of ```./build``` on the gh-pages branch of the repo 
+
+
+## `License:` 
+
+**[MIT](/LICENSE)**
