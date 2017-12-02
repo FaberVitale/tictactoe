@@ -67,9 +67,11 @@ Minifies and optimizes the code.
 
 ### `npm run deploy`
 
-pushed the content of ```./build``` on the gh-pages branch of the repo 
+pushes the content of ```./build``` on the gh-pages branch of this repo 
 
+<hr/>
 
-## `License:` 
+## License
 
 **[MIT](/LICENSE)**
+
