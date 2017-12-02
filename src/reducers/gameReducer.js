@@ -1,4 +1,4 @@
-import symb from "../constants";
+import { symb } from "../constants";
 import { PLACE_SIGN, PLACE_SIGN_AI } from "../constants/actions";
 import { setIn } from "../util/stringUtil";
 

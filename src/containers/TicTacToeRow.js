@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import BoardCell from "../components/BoardCell";
-import { getRow, isGameOver, getWinnerLine, getBoard } from "../selectors";
-import symb, { cellAriaLabel } from "../constants";
+import { getRow, isGameOver, getWinnerLine } from "../selectors";
+import { symb, cellAriaLabel } from "../constants";
 import { placeSign } from "../actionCreators";
 import "../css/board-row.css";
 import propTypes from "prop-types";
-import { defaultMergeProps } from "../util/functionUtil";
+import { defaultMergeProps, areBoardsEqual } from "../util/functionUtil";
 
 const cellIndexes = [0, 1, 2];
 
@@ -62,7 +62,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const connectOptions = {
-  "areStatesEqual": (next, prev) => getBoard(next) === getBoard(prev)
+  "areStatesEqual": areBoardsEqual
 }
 
 TicTacToeRow.propTypes = {

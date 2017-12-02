@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import MousetrapWrapper from "../components/MousetrapWrapper";
 import { connect } from "react-redux";
 import { getBoard, isGameOver, getModalState } from "../selectors";
-import symb, { throttleTime } from "../constants";
+import { symb, throttleTime } from "../constants";
 import { throttle, $id, $disabled } from "../util/functionUtil";
 
 const simulateClick = (buttonId) => {
@@ -48,6 +48,7 @@ class KeyBinder extends Component {
       cb();
     }
   }
+
   move(mod, isGT) {
     if (this.props.isGO) {
       return;

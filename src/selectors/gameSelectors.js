@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import symb, { gameMode } from "../constants";
+import { symb, gameMode } from "../constants";
 import { winnerLine } from "../util/boardUtil";
 import { countNot } from "../util/stringUtil";
 

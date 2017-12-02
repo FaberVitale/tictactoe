@@ -43,20 +43,20 @@ export default class Listbox extends PureComponent {
     this.elem = elem;
   }
 
-  makeList = () => {
+  renderOption = (item, index) => {
     return (
-      this.props.items.map(
-        function makeOption(item, index) {
+      <OptionItem
+        id={getOptionId(this.props.id, index)}
+        key={index}
+        text={item}
+        isSelected={this.props.selectedIndex === index}
+      />
+    );
+  }
 
-          return (
-            <OptionItem
-              id={getOptionId(this.props.id, index)}
-              key={index}
-              text={item}
-              isSelected={this.props.selectedIndex === index}
-            />
-          );
-        }, this)
+  makeList = (item, index) => {
+    return (
+      this.props.items.map(this.renderOption, this)
     );
   }
 

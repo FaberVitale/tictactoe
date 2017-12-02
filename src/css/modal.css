@@ -17,18 +17,19 @@
 }
 
 #modal-close-button {
-  position: fixed;
+  position: absolute;
   border-top-left-radius: 18px;
   border-top-right-radius: 18px;
   border-bottom-right-radius: 17px;
   border-bottom-left-radius: 17px;
   padding-top: 0;
   outline-width: 2px;
-  outline-offset: 3px;
+  outline-offset: 1px;
   outline-color: cornflowerblue;
   padding-bottom: 1px;
   padding-left: 11px;
   padding-right: 11px;
+  width: max-content;
   background-color: rgb(190, 190, 200);
   border-left: 0;
   border-right: 0;
@@ -88,10 +89,6 @@
   outline-width: 0;
 }
 
-#modal-content:focus {
-  box-shadow: 1px 1px 5px 4px rgba(25, 25, 25, .7);
-}
-
 #modal-content>* {
   flex-shrink: 0;
 }
@@ -102,36 +99,32 @@
   animation-timing-function: ease-in;
 }
 
-.modal-content-trans-hide>#modal-close-button {
-  display: none;
-}
-
-@media only screen and (min-device-width: 769px){
+@media only screen and (min-device-width: 769px) {
   #modal-content {
-    padding: 4% 4%;
+    padding: 5% 5%;
     top: 10%;
-    left: 20%;
-    right: 20%;
+    left: 15%;
+    right: 15%;
     max-height: 80%;
     font-size: 20px;
   }
   #modal-close-button {
-    top: 12%;
-    right: 22%;
+    top: 4px;
+    right: 10px;
   }
 }
 
-@media only screen and (max-device-width: 768px){
+@media only screen and (max-device-width: 768px) {
   #modal-content {
     top: 10%;
     left: 10%;
     right: 10%;
     max-height: 80%;
     padding: 10% 10%;
-    font-size: calc(15.5vmin * 0.30);
+    font-size: calc(15.5vw * 0.30);
   }
   #modal-close-button {
-    top: 12%;
-    right: 13%;
+    top: 4px;
+    right: 10px;
   }
 }

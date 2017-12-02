@@ -1,25 +1,10 @@
-import symb, { lines, symbScore } from "../constants";
-export const sides = [1, 5, 7, 4];
-export const edges = [0, 2, 8, 6];
-
-export const opposingEdges = {
-  "0": 8,
-  "8": 0,
-  "2": 6,
-  "6": 2
-};
-
-export const forkSpecialCases = [
-  [
-    symb.x, symb.empty, symb.empty,
-    symb.empty, symb.o, symb.empty,
-    symb.empty, symb.empty, symb.x].join(""),
-  [
-    symb.empty, symb.empty, symb.x,
-    symb.empty, symb.o, symb.empty,
-    symb.x, symb.empty, symb.empty
-  ].join("")
-];
+import {
+  symb,
+  lines,
+  symbScore,
+  sides,
+  edges
+} from "../constants";
 
 export const winnerLine = (...lines) => {
   for (let i = 0, len = lines.length; i < len; i++) {

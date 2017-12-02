@@ -1,10 +1,13 @@
 import {
   getEmptyCellIndex,
-  opposingEdges,
   getCellThatCreatesFork,
-  forkSpecialCases
+
 } from "../util/boardUtil";
-import symb from "../constants";
+import {
+  symb,
+  forkSpecialCases,
+  opposingEdges
+} from "../constants";
 
 export const lineLogic = {
   twoInLine: (board, boardInfo, ai, other, turn) => {

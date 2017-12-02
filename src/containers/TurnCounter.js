@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getTurn, getBoard } from "../selectors";
-import { defaultMergeProps } from "../util/functionUtil";
+import { getTurn } from "../selectors";
+import { defaultMergeProps, areBoardsEqual } from "../util/functionUtil";
 
 const TurnCounter = ({ turn }) => {
   return (
@@ -9,13 +9,12 @@ const TurnCounter = ({ turn }) => {
   );
 };
 
-
 const mapStateToProps = (state) => ({
   turn: getTurn(state)
 })
 
 const connectOptions = {
-  "areStatesEqual": (next, prev) => getBoard(next) === getBoard(prev)
+  "areStatesEqual": areBoardsEqual
 }
 
 export default connect(

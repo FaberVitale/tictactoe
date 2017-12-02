@@ -7,7 +7,7 @@ class MousetrapWrapper extends Component {
     super(props);
 
     this.state = {
-      bindings: props.bindings,
+      bindings: props.bindings
     }
   }
 

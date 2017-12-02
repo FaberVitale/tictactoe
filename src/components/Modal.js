@@ -3,7 +3,7 @@ import "../css/modal.css";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import { $id } from "../util/functionUtil";
-import { keyBindingsKeys, rootId } from "../constants";
+import { rootId } from "../constants";
 
 const modalContentClass = [
   "modal-hidden",
@@ -125,10 +125,6 @@ class Modal extends PureComponent {
         evt.preventDefault();
         break;
       default:
-        //block Mousetrap KeyBindings
-        if (keyBindingsKeys.has(evt.key)) {
-          evt.nativeEvent.stopImmediatePropagation();
-        }
     }
   }
 
@@ -155,16 +151,15 @@ class Modal extends PureComponent {
       default:
         err = `invalid state ${this.state.mState}`;
     }
-    if (err && process.env.NODE_ENV !== "production") {
-      console.warn(err);
-    }
 
-    if (nextState > -1) {
+    if (nextState >= mStates.HIDDEN && nextState <= mStates.TRANS_SHOW) {
       this.setState({
         mState: nextState
       })
     }
-
+    else if (err && process.env.NODE_ENV !== "production") {
+      console.warn(err);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -230,11 +225,9 @@ class Modal extends PureComponent {
         }
         ref={this.getModalContentRef}
         onKeyDown={this.handleKeyEvents}
-        onKeyPress={this.handleKeyEvents}
         aria-label={this.props.title}
         tabIndex={this.state.mState === mStates.VISIBLE ? "0" : null}
       >
-        {this.props.children}
         <button
           type="button"
           onClick={this.hide}
@@ -242,6 +235,7 @@ class Modal extends PureComponent {
           ref={this.getButtonRef}
           aria-label="close"
         >&times;</button>
+        {this.props.children}
       </div>
       ,
       this.modalRoot

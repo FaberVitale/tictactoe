@@ -55,7 +55,7 @@ class ControlBar extends PureComponent {
           className="control-bar-button"
           disabled={isUndoDisabled}
           onClick={onUndoClick}
-        >{ControlBar.undo[+isLargeScreen] || ControlBar.undo[1]}</button>
+        >{ControlBar.undo[+isLargeScreen]}</button>
       )
     ];
 
@@ -72,7 +72,7 @@ class ControlBar extends PureComponent {
           className="control-bar-button"
           disabled={isRedoDisabled}
           onClick={onRedoClick}
-        >{ControlBar.redo[+isLargeScreen] || ControlBar.redo[1]}</button>
+        >{ControlBar.redo[+isLargeScreen]}</button>
       </div>
     );
   }

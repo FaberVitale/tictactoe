@@ -1,10 +1,9 @@
-import { values } from "../util/functionUtil";
 
 /* symb values should be single characters part of Unicode BMP. 
  * if character outside BMP are used, it should be added another object that maps
  * symb keys to the characters to display in the BoardCells 
  * */
-const symb = {
+export const symb = {
   x: "✗",   //\u2717 
   o: "O",
   empty: " " //\u0020 a simple white space
@@ -22,17 +21,6 @@ export const symbScore = {
   [symb.empty]: 0
 };
 
-export const lines = [
-  [0, 4, 8],
-  [2, 4, 6],
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8]
-];
-
 export const gameMode = {
   "PVAI_EASY": "easy",
   "PVAI_MEDIUM": "medium",
@@ -40,7 +28,11 @@ export const gameMode = {
   "PVP": "pvp"
 }
 
-export const gameModeValues = values(gameMode);
+export const gameModeValues = Object
+  .keys(gameMode)
+  .map(function value(key) {
+    return gameMode[key];
+  });
 
 export const gameModeInv = {
   "easy": "PVAI_EASY",
@@ -71,4 +63,39 @@ export const rootId = "root";
 
 export const throttleTime = 150;
 
-export default symb;
+/* board constants*/
+
+export const opposingEdges = {
+  "0": 8,
+  "8": 0,
+  "2": 6,
+  "6": 2
+};
+
+export const lines = [
+  [0, 4, 8],
+  [2, 4, 6],
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8]
+];
+
+
+export const forkSpecialCases = [
+  [
+    symb.x, symb.empty, symb.empty,
+    symb.empty, symb.o, symb.empty,
+    symb.empty, symb.empty, symb.x].join(""),
+  [
+    symb.empty, symb.empty, symb.x,
+    symb.empty, symb.o, symb.empty,
+    symb.x, symb.empty, symb.empty
+  ].join("")
+];
+
+export const sides = [1, 5, 7, 4];
+
+export const edges = [0, 2, 8, 6];

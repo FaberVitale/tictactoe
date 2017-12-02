@@ -36,7 +36,7 @@ export default (reducer) => {
 
   const initState = {
     past: [],
-    present: (reducer(undefined, { action: UNDO_INIT })), //the reducer provides us the default state
+    present: (reducer(undefined, { action: UNDO_INIT })), //the reducer provides the default state
     future: []
   };
 

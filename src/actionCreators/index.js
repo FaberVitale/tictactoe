@@ -15,7 +15,7 @@ import {
   isCellEmpty
 } from "../selectors";
 import { aiMove } from "../ai";
-import symb, { gameModeInv } from "../constants";
+import { symb, gameModeInv } from "../constants";
 
 export const setGameMode = (val) =>
   (dispatch, getState) => {

@@ -1,4 +1,4 @@
-import symb from "../constants";
+import { symb } from "../constants";
 import { getBoardInfo } from "../util/boardUtil";
 
 
