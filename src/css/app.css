@@ -9,7 +9,6 @@
 body {
   height: 100vh;
   background-color: rgb(225, 225, 230);
-  ;
 }
 
 
@@ -23,7 +22,15 @@ body {
   overall width(em) = 6.8em;
 
   app: 6.8em
-  app margin left: 0.8em(1/2 of sidebar width) 
+  app margin left: 0.8em(1/2 of sidebar width)
+
+  app height(large Screen):
+
+  board: 5.2em + 2px (@fontsize: 100px -> 522px)
+  header: 72px (vert margins + border-box height)
+  footer: 60px (top margin + border box height)
+
+  overall height: 5.2em + 134px -> 654px
 */
 
 #app {
@@ -72,7 +79,7 @@ kbd {
 }
 
 h1 {
-  color: rgba(117, 149, 202, 0.8);
+  color: rgb(139, 164, 208);
   text-align: center;
   font-weight: bold;
 }
@@ -106,8 +113,18 @@ section+section {
 
 @media only screen and (min-device-width: 769px) {
   #app {
-    font-size: 100px;
     /*the dimensions of this app scale with this property*/
+    font-size: 100px;
+  }
+  h1 {
+    font-size: .6em;
+    margin-right: .1em;
+  }
+}
+
+@media only screen and (min-device-width: 769px) {
+  #app {
+    font-size: 11.5vh;
   }
   h1 {
     font-size: .6em;

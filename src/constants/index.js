@@ -55,10 +55,6 @@ export const cellAriaLabel = [
   'cell 3,3'
 ];
 
-export const keyBindingsKeys = new Set([
-  "w", "a", "s", "d", "e"
-]);
-
 export const rootId = "root";
 
 export const throttleTime = 150;
