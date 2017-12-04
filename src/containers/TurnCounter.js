@@ -4,19 +4,20 @@ import { getTurn } from "../selectors";
 import { defaultMergeProps, areBoardsEqual } from "../util/functionUtil";
 
 const TurnCounter = ({ turn }) => {
-  return (
-    <p className="info-label">{`turn: ${turn}`}</p>
-  );
+  return <p className="info-label">{`turn: ${turn}`}</p>;
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   turn: getTurn(state)
-})
+});
 
 const connectOptions = {
-  "areStatesEqual": areBoardsEqual
-}
+  areStatesEqual: areBoardsEqual
+};
 
 export default connect(
-  mapStateToProps, null, defaultMergeProps, connectOptions
+  mapStateToProps,
+  null,
+  defaultMergeProps,
+  connectOptions
 )(TurnCounter);

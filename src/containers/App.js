@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import TicTacToeMain from "./TicTacToeMain";
 import TicTacToeHeader from "./TicTacToeHeader";
 import TicTacToeInfoBar from "./TicTacToeInfoBar";
@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import configureStore from "../configureStore";
 import "../css/app.css";
 import { mediaQueryWidth } from "../constants";
+
 const store = configureStore();
 
 class App extends Component {
@@ -23,15 +24,13 @@ class App extends Component {
           <TicTacToeHeader isLargeScreen={matches} />
           {matches ? content : content.reverse()}
         </div>
-      </Provider >
+      </Provider>
     );
   }
 
   render() {
     return (
-      <MediaQuery query={mediaQueryWidth}>
-        {this.mediaQCallback}
-      </MediaQuery>
+      <MediaQuery query={mediaQueryWidth}>{this.mediaQCallback}</MediaQuery>
     );
   }
 }

@@ -6,4 +6,4 @@ export default (state = initState, action) => {
     return action.payload;
   }
   return state;
-}
+};

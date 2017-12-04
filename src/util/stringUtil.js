@@ -1,6 +1,6 @@
 export const setIn = (str, index, other) => {
   return `${str.slice(0, index)}${other}${str.slice(index + 1)}`;
-}
+};
 
 export const countNot = char => str => {
   let res = 0;
@@ -11,4 +11,4 @@ export const countNot = char => str => {
     }
   }
   return res;
-}
+};

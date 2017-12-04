@@ -8,8 +8,8 @@ export const getBoard = state => state.game.present;
 
 export const getModalState = state => state.isModalOpen;
 
-export const getRow =
-  ind => state => state.game.present.slice(3 * ind, 3 * ind + 3);
+export const getRow = ind => state =>
+  state.game.present.slice(3 * ind, 3 * ind + 3);
 
 export const isCellEmpty = state => ind => getBoard(state)[ind] === symb.empty;
 
@@ -27,29 +27,26 @@ export const getGameModeIndex = state =>
 
 /* -- reselect selectors -- */
 export const getCol = [
-  createSelector(getBoard, (board) => `${board[0]}${board[3]}${board[6]}`),
-  createSelector(getBoard, (board) => `${board[1]}${board[4]}${board[7]}`),
-  createSelector(getBoard, (board) => `${board[2]}${board[5]}${board[8]}`),
+  createSelector(getBoard, board => `${board[0]}${board[3]}${board[6]}`),
+  createSelector(getBoard, board => `${board[1]}${board[4]}${board[7]}`),
+  createSelector(getBoard, board => `${board[2]}${board[5]}${board[8]}`)
 ];
 
 export const getMainDiag = createSelector(
   getBoard,
-  (board) => `${board[0]}${board[4]}${board[8]}`
+  board => `${board[0]}${board[4]}${board[8]}`
 );
 
 export const getAntiDiag = createSelector(
   getBoard,
-  (board) => `${board[2]}${board[4]}${board[6]}`
+  board => `${board[2]}${board[4]}${board[6]}`
 );
 
-export const getTurn = createSelector(
-  getBoard,
-  countNot(symb.empty)
-);
+export const getTurn = createSelector(getBoard, countNot(symb.empty));
 
 export const getNextPlayer = createSelector(
   getTurn,
-  (turn) => turn % 2 === 0 ? symb.x : symb.o
+  turn => (turn % 2 === 0 ? symb.x : symb.o)
 );
 
 export const getWinnerLine = createSelector(

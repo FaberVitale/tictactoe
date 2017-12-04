@@ -4,19 +4,16 @@ import { canUndo, canRedo, isNew } from "../selectors";
 import ControlBar from "../components/ControlBar";
 import { undoRedoAction } from "../actionCreators";
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   isNewDisabled: isNew(state),
   isUndoDisabled: !canUndo(state),
-  isRedoDisabled: !canRedo(state),
+  isRedoDisabled: !canRedo(state)
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   onNewClick: () => dispatch({ type: NEW }),
   onUndoClick: () => dispatch(undoRedoAction(UNDO)),
   onRedoClick: () => dispatch(undoRedoAction(REDO))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ControlBar);
+export default connect(mapStateToProps, mapDispatchToProps)(ControlBar);

@@ -10,20 +10,19 @@ import { defaultMergeProps, areBoardsEqual } from "../util/functionUtil";
 
 const cellIndexes = [0, 1, 2];
 
-const renderSquare =
-  (cellIndex, onCellClick, value, cellState, isDisabled) => {
-    return (
-      <BoardCell
-        key={cellIndex}
-        cellIndex={cellIndex}
-        handleClick={onCellClick}
-        value={value}
-        isDisabled={isDisabled}
-        cellState={cellState}
-        ariaLabel={cellAriaLabel[cellIndex]}
-      />
-    );
-  }
+const renderSquare = (cellIndex, onCellClick, value, cellState, isDisabled) => {
+  return (
+    <BoardCell
+      key={cellIndex}
+      cellIndex={cellIndex}
+      handleClick={onCellClick}
+      value={value}
+      isDisabled={isDisabled}
+      cellState={cellState}
+      ariaLabel={cellAriaLabel[cellIndex]}
+    />
+  );
+};
 
 const TicTacToeRow = ({
   rowIndex,
@@ -38,18 +37,23 @@ const TicTacToeRow = ({
         const value = rowVals[ind];
         const cellIndex = 3 * rowIndex + ind;
         const isDisabled = value !== symb.empty || isGameOver;
-        const cellState =
-          BoardCell.getCellState(winnerLine, isDisabled, cellIndex);
-
-        return (
-          renderSquare(cellIndex, onCellClick, value, cellState, isDisabled)
+        const cellState = BoardCell.getCellState(
+          winnerLine,
+          isDisabled,
+          cellIndex
         );
-      })
-      }
+
+        return renderSquare(
+          cellIndex,
+          onCellClick,
+          value,
+          cellState,
+          isDisabled
+        );
+      })}
     </div>
   );
 };
-
 
 const mapStateToProps = (state, ownProps) => ({
   rowVals: getRow(ownProps.rowIndex)(state),
@@ -57,13 +61,13 @@ const mapStateToProps = (state, ownProps) => ({
   winnerLine: getWinnerLine(state)
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onCellClick: (cellIndex) => () => dispatch(placeSign(cellIndex))
+const mapDispatchToProps = dispatch => ({
+  onCellClick: cellIndex => () => dispatch(placeSign(cellIndex))
 });
 
 const connectOptions = {
-  "areStatesEqual": areBoardsEqual
-}
+  areStatesEqual: areBoardsEqual
+};
 
 TicTacToeRow.propTypes = {
   rowIndex: propTypes.number.isRequired,
@@ -71,7 +75,7 @@ TicTacToeRow.propTypes = {
   rowVals: propTypes.string.isRequired,
   isGameOver: propTypes.bool.isRequired,
   winnerLine: propTypes.number.isRequired
-}
+};
 
 export default connect(
   mapStateToProps,

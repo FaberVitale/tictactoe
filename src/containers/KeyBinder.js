@@ -5,11 +5,11 @@ import { getBoard, isGameOver, getModalState } from "../selectors";
 import { symb, throttleTime } from "../constants";
 import { throttle, $id, $disabled } from "../util/functionUtil";
 
-const simulateClick = (buttonId) => {
+const simulateClick = buttonId => {
   return () => {
-    const elem = buttonId ?
-      $id(buttonId) || document.activeElement :
-      document.activeElement;
+    const elem = buttonId
+      ? $id(buttonId) || document.activeElement
+      : document.activeElement;
 
     if ($disabled(elem)) {
       return;
@@ -22,10 +22,9 @@ const simulateClick = (buttonId) => {
     elem.click();
 
     if ($disabled(elem)) {
-      elem.blur();    //firefox keeps disabled buttons focused
+      elem.blur(); //firefox keeps disabled buttons focused
     }
-
-  }
+  };
 };
 
 const throttledSimulateClick = throttle(throttleTime, simulateClick());
@@ -34,20 +33,18 @@ const focusSelect = () => {
   if (document.activeElement.id !== "mode-list") {
     $id("mode-list").focus();
   }
-}
-
+};
 
 class KeyBinder extends Component {
-
   shouldComponentUpdate() {
     return false;
   }
 
-  triggerIf = (cb) => () => {
+  triggerIf = cb => () => {
     if (this.props.shouldTrigger) {
       cb();
     }
-  }
+  };
 
   move(mod, isGT) {
     if (this.props.isGO) {
@@ -59,8 +56,7 @@ class KeyBinder extends Component {
 
     if (!focusId || !focusId.startsWith("cell-")) {
       selected = this.props.board.indexOf(symb.empty);
-    }
-    else {
+    } else {
       let currIndex = parseInt(focusId.slice(5), 10);
 
       selected = currIndex + mod;
@@ -70,18 +66,16 @@ class KeyBinder extends Component {
       }
 
       if (this.props.board[selected] !== symb.empty) {
-        selected = isGT ?
-          this.props.board.indexOf(symb.empty, selected + 1) :
-          this.props.board.lastIndexOf(symb.empty, selected - 1);
+        selected = isGT
+          ? this.props.board.indexOf(symb.empty, selected + 1)
+          : this.props.board.lastIndexOf(symb.empty, selected - 1);
       }
     }
 
     if (selected > -1) {
-
       $id(`cell-${selected}`).focus();
     }
   }
-
 
   render() {
     const moveLeft = this.triggerIf(
@@ -100,34 +94,29 @@ class KeyBinder extends Component {
       throttle(throttleTime, this.move.bind(this, 3, true))
     );
 
-    const undo = this.triggerIf(
-      throttle(throttleTime, simulateClick("undo"))
-    );
-    const redo = this.triggerIf(
-      throttle(throttleTime, simulateClick("redo"))
-    );
+    const undo = this.triggerIf(throttle(throttleTime, simulateClick("undo")));
+    const redo = this.triggerIf(throttle(throttleTime, simulateClick("redo")));
 
     return (
       <MousetrapWrapper
-        bindings={
-          {
-            "w": moveUp,
-            "a": moveLeft,
-            "s": moveDown,
-            "d": moveRIght,
-            "e": this.triggerIf(throttledSimulateClick),
-            "ctrl+z": undo,
-            "ctrl+shift+z": redo,
-            "ctrl+y": redo,
-            "n": this.triggerIf(throttle(throttleTime, simulateClick("new"))),
-            "m": this.triggerIf(throttle(throttleTime, focusSelect))
-          }
-        } />
+        bindings={{
+          w: moveUp,
+          a: moveLeft,
+          s: moveDown,
+          d: moveRIght,
+          e: this.triggerIf(throttledSimulateClick),
+          "ctrl+z": undo,
+          "ctrl+shift+z": redo,
+          "ctrl+y": redo,
+          n: this.triggerIf(throttle(throttleTime, simulateClick("new"))),
+          m: this.triggerIf(throttle(throttleTime, focusSelect))
+        }}
+      />
     );
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   board: getBoard(state),
   isGO: isGameOver(state),
   shouldTrigger: !getModalState(state)

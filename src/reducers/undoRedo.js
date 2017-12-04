@@ -1,6 +1,11 @@
 //see http://redux.js.org/docs/recipes/ImplementingUndoHistory.html
 import {
-  UNDO, REDO, NEW, UNDO_AI, REDO_AI, CHANGE_GAME_MODE
+  UNDO,
+  REDO,
+  NEW,
+  UNDO_AI,
+  REDO_AI,
+  CHANGE_GAME_MODE
 } from "../constants/actions";
 
 const UNDO_INIT = "@@UNDOREDO/INIT";
@@ -11,7 +16,7 @@ const jumpBack = (past, present, future, times) => {
       past: past.slice(0, past.length - 1),
       present: past[past.length - 1],
       future: [present, ...future]
-    }
+    };
   }
   return {
     past: past.slice(0, past.length - times),
@@ -32,11 +37,10 @@ const advance = (past, present, newPresent) => ({
   future: []
 });
 
-export default (reducer) => {
-
+export default reducer => {
   const initState = {
     past: [],
-    present: (reducer(undefined, { action: UNDO_INIT })), //the reducer provides the default state
+    present: reducer(undefined, { action: UNDO_INIT }), //the reducer provides the default state
     future: []
   };
 
@@ -85,4 +89,4 @@ export default (reducer) => {
         return advance(past, present, newPresent);
     }
   };
-}
+};

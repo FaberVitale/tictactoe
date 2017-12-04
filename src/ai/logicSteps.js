@@ -1,13 +1,5 @@
-import {
-  getEmptyCellIndex,
-  getCellThatCreatesFork,
-
-} from "../util/boardUtil";
-import {
-  symb,
-  forkSpecialCases,
-  opposingEdges
-} from "../constants";
+import { getEmptyCellIndex, getCellThatCreatesFork } from "../util/boardUtil";
+import { symb, forkSpecialCases, opposingEdges } from "../constants";
 
 export const lineLogic = {
   twoInLine: (board, boardInfo, ai, other, turn) => {
@@ -32,7 +24,6 @@ export const lineLogic = {
     }
 
     if (boardInfo.lines[ai].single.length > 1) {
-
       const [a, b] = boardInfo.lines[ai].single;
       let possibleForkInd = -1;
 
@@ -71,20 +62,18 @@ export const lineLogic = {
         //check if it is a special case
         if (forkSpecialCases.filter(fBoard => fBoard === board).length > 0) {
           return boardInfo.sides[symb.empty][0];
-        }
-        //place the symb on the forking cell
-        else {
+        } else {
+          //place the symb on the forking cell
           return possibleForkInd;
         }
       }
     }
     return -1;
   }
-}
-
+};
 
 export const takeIfEmpty = {
-  center: (board) => board[4] === symb.empty ? 4 : -1,
+  center: board => (board[4] === symb.empty ? 4 : -1),
 
   edge: (board, boardInfo, ai, other, turn) => {
     //take opposite edge of an opponent if empty
@@ -110,6 +99,6 @@ export const takeIfEmpty = {
 };
 
 export const turnZeroLogic = {
-  takeCenterOrEdges: () => Math.random() * 5 << 1,
-  takeRandomCell: () => Math.random * 9 >>> 0
+  takeCenterOrEdges: () => (Math.random() * 5) << 1,
+  takeRandomCell: () => (Math.random * 9) >>> 0
 };

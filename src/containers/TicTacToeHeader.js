@@ -10,12 +10,11 @@ class TicTacToeHeader extends PureComponent {
         {this.props.isLargeScreen ? <TicTacToeModeSelect /> : null}
       </header>
     );
-
   }
 }
 
 TicTacToeHeader.propTypes = {
   isLargeScreen: PropTypes.bool.isRequired
-}
+};
 
 export default TicTacToeHeader;

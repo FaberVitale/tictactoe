@@ -12,11 +12,9 @@ const listBoxId = "mode-list";
 const ModeSelect = ({ selectedIndex, handleItemClick }) => {
   return (
     <div className="top-bar">
-      <span
-        className="info-label"
-        id={labelId}
-      >mode
-        </span>
+      <span className="info-label" id={labelId}>
+        mode
+      </span>
       <Listbox
         id={listBoxId}
         items={gameModeValues}
@@ -24,18 +22,17 @@ const ModeSelect = ({ selectedIndex, handleItemClick }) => {
         selectedIndex={selectedIndex}
         handleItemClick={handleItemClick}
       />
-    </div >
+    </div>
   );
 };
 
-
-const mapStateToProps = (state) => ({
-  selectedIndex: getGameModeIndex(state),
+const mapStateToProps = state => ({
+  selectedIndex: getGameModeIndex(state)
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  handleItemClick: (mode) => {
-    dispatch(setGameMode(mode))
+const mapDispatchToProps = dispatch => ({
+  handleItemClick: mode => {
+    dispatch(setGameMode(mode));
   }
 });
 

@@ -8,7 +8,7 @@ class MousetrapWrapper extends Component {
 
     this.state = {
       bindings: props.bindings
-    }
+    };
   }
 
   shouldComponentUpdate() {
@@ -34,6 +34,6 @@ class MousetrapWrapper extends Component {
 
 MousetrapWrapper.propTypes = {
   bindings: PropTypes.objectOf(PropTypes.func)
-}
+};
 
 export default MousetrapWrapper;

@@ -1,6 +1,6 @@
 export const PLACE_SIGN = "PLACE_SIGN";
 
-export const PLACE_SIGN_AI = "PLACE_SIGN_AI"
+export const PLACE_SIGN_AI = "PLACE_SIGN_AI";
 
 export const NEW = "NEW";
 

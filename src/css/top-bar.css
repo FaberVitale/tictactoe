@@ -7,8 +7,8 @@
 
 .info-label {
   display: inline-block;
-  font-size: .2em;
-  padding: .4em;
+  font-size: 0.2em;
+  padding: 0.4em;
   background-color: rgb(198, 203, 211);
   border: none;
   line-height: normal;
@@ -30,8 +30,8 @@
     font-size: 1em;
   }
   .info-label {
-    font-size: .35em;
-    padding: .4em .49em;
+    font-size: 0.35em;
+    padding: 0.4em 0.49em;
   }
 }
 
@@ -40,7 +40,7 @@
     font-size: 50px;
   }
   h1 {
-    font-size: .6em;
+    font-size: 0.6em;
   }
   .top-bar {
     justify-content: space-between;

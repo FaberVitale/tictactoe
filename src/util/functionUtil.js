@@ -9,12 +9,12 @@ export const throttle = (span, func, thisArg) => {
       last = now;
       return func.apply(context, args);
     }
-  }
+  };
 };
 
-export const $id = (id) => document.getElementById(id);
+export const $id = id => document.getElementById(id);
 
-export const $disabled = (elem) => elem.hasAttribute("disabled");
+export const $disabled = elem => elem.hasAttribute("disabled");
 
 export const defaultMergeProps = (stateProps, dispatchProps, ownProps) =>
   Object.assign({}, ownProps, stateProps, dispatchProps);

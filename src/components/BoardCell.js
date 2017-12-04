@@ -6,9 +6,9 @@ import { lines } from "../constants";
 import { $disabled } from "../util/functionUtil";
 
 export const cellStates = {
-  "IDLE": 0,
-  "FILLED": 1,
-  "VICTORY": 2
+  IDLE: 0,
+  FILLED: 1,
+  VICTORY: 2
 };
 
 const mapStateToCellClassName = [
@@ -17,11 +17,7 @@ const mapStateToCellClassName = [
   "board-cell disabled victory"
 ];
 
-const mapStateToPClassName = [
-  "empty",
-  "filled-animated",
-  "filled-animated"
-];
+const mapStateToPClassName = ["empty", "filled-animated", "filled-animated"];
 
 const BoardCell = class extends PureComponent {
   constructor(props) {
@@ -36,12 +32,13 @@ const BoardCell = class extends PureComponent {
     this.prevCellState = this.props.cellState;
   }
 
-  getRef = (elem) => {
+  getRef = elem => {
     this.buttonElem = elem;
-  }
+  };
   /* computes P className avoids fadeIn animations on undo*/
   getPClassName() {
-    if (this.prevCellState > -1 &&
+    if (
+      this.prevCellState > -1 &&
       this.prevCellState === cellStates.VICTORY &&
       this.props.cellState === cellStates.FILLED
     ) {
@@ -52,10 +49,11 @@ const BoardCell = class extends PureComponent {
   }
 
   componentDidUpdate() {
-    if (document.activeElement === this.buttonElem &&
+    if (
+      document.activeElement === this.buttonElem &&
       $disabled(this.buttonElem)
     ) {
-      this.buttonElem.blur();  ///firefox keeps focused blurred buttons 
+      this.buttonElem.blur(); ///firefox keeps focused blurred buttons
     }
   }
   render() {
@@ -70,14 +68,12 @@ const BoardCell = class extends PureComponent {
         disabled={this.props.isDisabled}
         aria-label={`${this.props.ariaLabel}: ${symbToA11y[this.props.value]}`}
       >
-        <div className="victory-overlay" aria-hidden="true"></div>
-        <p className={this.getPClassName()}>
-          {this.props.value}
-        </p>
-      </button >
+        <div className="victory-overlay" aria-hidden="true" />
+        <p className={this.getPClassName()}>{this.props.value}</p>
+      </button>
     );
   }
-}
+};
 
 BoardCell.getCellState = (winnerLine, isDisabled, cellIndex) => {
   let res;
@@ -85,16 +81,13 @@ BoardCell.getCellState = (winnerLine, isDisabled, cellIndex) => {
   if (winnerLine < 0) {
     if (isDisabled) {
       res = cellStates.FILLED;
-    }
-    else {
+    } else {
       res = cellStates.IDLE;
     }
-  }
-  else {
+  } else {
     if (winnerLine > -1 && lines[winnerLine].indexOf(cellIndex) > -1) {
       res = cellStates.VICTORY;
-    }
-    else {
+    } else {
       res = cellStates.FILLED;
     }
   }
@@ -108,6 +101,6 @@ BoardCell.propTypes = {
   isDisabled: PropTypes.bool.isRequired,
   cellState: PropTypes.number.isRequired,
   ariaLabel: PropTypes.string.isRequired
-}
+};
 
-export default BoardCell; 
+export default BoardCell;

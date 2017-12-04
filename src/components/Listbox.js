@@ -10,23 +10,23 @@ const optionListClassLists = {
   visible: "option-list option-list-theme option-list-visible",
   hidden: "option-list option-list-theme option-list-hidden",
   hiddenAnimOver: "option-list option-list-theme option-list-anim-over"
-}
+};
 
 const svgAnimatorClassList = {
   visible: "svg-animator rotate-90",
   hidden: "svg-animator"
-}
+};
 
-const getOptionClass = (isVisible, isAnimating) => isVisible ?
-  optionListClassLists.visible :
-  isAnimating ?
-    optionListClassLists.hidden :
-    optionListClassLists.hiddenAnimOver
+const getOptionClass = (isVisible, isAnimating) =>
+  isVisible
+    ? optionListClassLists.visible
+    : isAnimating
+      ? optionListClassLists.hidden
+      : optionListClassLists.hiddenAnimOver;
 
 const getOptionId = (parentId, index) => `${parentId}-option-${index}`;
 const getOptionIndex = (parentId, optionId) =>
   parseInt(optionId.slice(parentId.length + 8), 10);
-
 
 export default class Listbox extends PureComponent {
   constructor(props) {
@@ -34,14 +34,13 @@ export default class Listbox extends PureComponent {
 
     this.state = {
       isVisible: false,
-      isAnimating: false,
-    }
-
+      isAnimating: false
+    };
   }
 
-  getRef = (elem) => {
+  getRef = elem => {
     this.elem = elem;
-  }
+  };
 
   renderOption = (item, index) => {
     return (
@@ -52,43 +51,41 @@ export default class Listbox extends PureComponent {
         isSelected={this.props.selectedIndex === index}
       />
     );
-  }
+  };
 
   makeList = (item, index) => {
-    return (
-      this.props.items.map(this.renderOption, this)
-    );
-  }
+    return this.props.items.map(this.renderOption, this);
+  };
 
-  setVisibility = throttle(throttleTime, (visibility) => {
+  setVisibility = throttle(throttleTime, visibility => {
     this.setState(prevState => {
       if (prevState.isVisible !== visibility) {
         return {
           isVisible: visibility,
           isAnimating: true
-        }
+        };
       }
     });
   });
 
-  handleKeyDown = throttle(throttleTime, (e) => {
+  handleKeyDown = throttle(throttleTime, e => {
     let isKnownKey = true;
     switch (e.key) {
       case "ArrowUp":
       case "ArrowLeft":
         if (this.props.selectedIndex > 0) {
-          this.props.handleItemClick(this.props.items[
-            this.props.selectedIndex - 1
-          ]);
+          this.props.handleItemClick(
+            this.props.items[this.props.selectedIndex - 1]
+          );
         }
         break;
 
       case "ArrowDown":
       case "ArrowRight":
         if (this.props.selectedIndex < this.props.items.length - 1) {
-          this.props.handleItemClick(this.props.items[
-            this.props.selectedIndex + 1
-          ]);
+          this.props.handleItemClick(
+            this.props.items[this.props.selectedIndex + 1]
+          );
         }
         break;
 
@@ -98,10 +95,11 @@ export default class Listbox extends PureComponent {
         }
         break;
       case "Enter":
-      case " ":  //Spacebar
+      case " ": //Spacebar
         this.setVisibility(!this.state.isVisible);
         break;
-      default: //unknown key
+      default:
+        //unknown key
         isKnownKey = false;
     }
     if (isKnownKey) {
@@ -109,46 +107,47 @@ export default class Listbox extends PureComponent {
     }
   });
 
-  handleClick = (e) => {
+  handleClick = e => {
     const elem = e.target;
 
-    if (elem === this.elem ||
-      elem.parentElement === this.elem
-    ) {
+    if (elem === this.elem || elem.parentElement === this.elem) {
       this.setVisibility(!this.state.isVisible);
-    }
-
-    else {
+    } else {
       let optionId = elem.id || elem.parentElement.id;
       this.props.handleItemClick(
         this.props.items[getOptionIndex(this.props.id, optionId)]
-
       );
       this.setVisibility(false);
     }
-  }
+  };
 
-  handleBlur = (e) => {
+  handleBlur = e => {
     if (e.target === this.elem) {
       this.setVisibility(false);
     }
-  }
+  };
 
-  handleTransitionEnd = () => this.setState({
-    isAnimating: false
-  })
+  handleTransitionEnd = () =>
+    this.setState({
+      isAnimating: false
+    });
 
   render() {
     return (
       <div
-        ref={(el) => { this.elem = el; }}
+        ref={el => {
+          this.elem = el;
+        }}
         id={this.props.id}
         className="listbox listbox-theme"
         role="listbox"
         tabIndex={0}
         aria-haspopup="true"
         aria-expanded={this.state.isVisible}
-        aria-activedescendant={getOptionId(this.props.id, this.props.selectedIndex)}
+        aria-activedescendant={getOptionId(
+          this.props.id,
+          this.props.selectedIndex
+        )}
         aria-labelledby={this.props.label || null}
         aria-describedby={this.props.describer || null}
         onFocus={this.handleFocus}
@@ -161,9 +160,9 @@ export default class Listbox extends PureComponent {
           <div
             aria-hidden="true"
             className={
-              this.state.isVisible ?
-                svgAnimatorClassList.visible :
-                svgAnimatorClassList.hidden
+              this.state.isVisible
+                ? svgAnimatorClassList.visible
+                : svgAnimatorClassList.hidden
             }
           >
             <FaCaretRight />
@@ -171,13 +170,14 @@ export default class Listbox extends PureComponent {
           <span>{this.props.items[this.props.selectedIndex]}</span>
         </div>
         <ul
-          className={
-            getOptionClass(this.state.isVisible, this.state.isAnimating)
-          }
+          className={getOptionClass(
+            this.state.isVisible,
+            this.state.isAnimating
+          )}
         >
           {this.makeList()}
         </ul>
-      </div >
+      </div>
     );
   }
 }
@@ -188,5 +188,5 @@ Listbox.propTypes = {
   handleItemClick: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(PropTypes.string).isRequired,
   label: PropTypes.string,
-  describer: PropTypes.string,
-}
+  describer: PropTypes.string
+};

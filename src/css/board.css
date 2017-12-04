@@ -3,9 +3,9 @@
   position: relative;
   flex-flow: column nowrap;
   justify-content: center;
-  border: .2em solid rgb(97, 117, 146);
+  border: 0.2em solid rgb(97, 117, 146);
   background-color: rgb(97, 117, 146);
-  border-radius: .2em;
+  border-radius: 0.2em;
   padding: 0;
   box-shadow: -1px 4px 4px 1px rgba(10, 10, 10, 0.5);
   font-size: inherit;

@@ -1,21 +1,21 @@
 footer {
   width: 5.2em;
-  margin-top: .2em;
+  margin-top: 0.2em;
   display: flex;
   justify-content: space-between;
   flex-flow: row nowrap;
   align-items: center;
-  padding: 0 .1em;
+  padding: 0 0.1em;
 }
 
-footer>* {
+footer > * {
   flex-shrink: 0;
 }
 
 #footer-button {
-  padding: .4em;
+  padding: 0.4em;
   border-radius: 5px;
-  font-size: .2em;
+  font-size: 0.2em;
   color: rgba(26, 26, 26, 1);
   background-color: rgb(146, 162, 189);
   border-width: 0;
@@ -38,15 +38,15 @@ footer>* {
     align-items: center;
     justify-content: space-around;
     width: 5.2em;
-    margin-bottom: .14em;
+    margin-bottom: 0.14em;
     margin-top: 0;
     padding: 0;
   }
-  .info-bar>* {
+  .info-bar > * {
     flex-shrink: 0;
   }
   #footer-button {
-    font-size: .35em;
+    font-size: 0.35em;
     width: 4.6em;
     order: 2;
   }

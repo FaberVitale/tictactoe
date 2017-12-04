@@ -12,13 +12,13 @@ class ControlBar extends PureComponent {
     this.targetClick = null;
   }
 
-  handleClick = (evt) => {
+  handleClick = evt => {
     if (evt.target === evt.currentTarget) {
       return;
     }
 
     this.targetClick = evt.target;
-  }
+  };
 
   componentDidUpdate() {
     if (this.targetClick && $disabled(this.targetClick)) {
@@ -28,42 +28,42 @@ class ControlBar extends PureComponent {
 
   render() {
     const {
-      isNewDisabled, onNewClick,
-      isUndoDisabled, onUndoClick,
-      isRedoDisabled, onRedoClick,
+      isNewDisabled,
+      onNewClick,
+      isUndoDisabled,
+      onUndoClick,
+      isRedoDisabled,
+      onRedoClick,
       isLargeScreen
     } = this.props;
 
     const elems = [
-      (
-        <button
-          key={0}
-          type="button"
-          aria-label="new"
-          id="new"
-          className="control-bar-button"
-          disabled={isNewDisabled}
-          onClick={onNewClick}
-        >new</button>
-      ),
-      (
-        <button
-          key={1}
-          type="button"
-          aria-label="undo"
-          id="undo"
-          className="control-bar-button"
-          disabled={isUndoDisabled}
-          onClick={onUndoClick}
-        >{ControlBar.undo[+isLargeScreen]}</button>
-      )
+      <button
+        key={0}
+        type="button"
+        aria-label="new"
+        id="new"
+        className="control-bar-button"
+        disabled={isNewDisabled}
+        onClick={onNewClick}
+      >
+        new
+      </button>,
+      <button
+        key={1}
+        type="button"
+        aria-label="undo"
+        id="undo"
+        className="control-bar-button"
+        disabled={isUndoDisabled}
+        onClick={onUndoClick}
+      >
+        {ControlBar.undo[+isLargeScreen]}
+      </button>
     ];
 
     return (
-      <div className="control-bar"
-        ref={this.getRef}
-        onClick={this.handleClick}
-      >
+      <div className="control-bar" ref={this.getRef} onClick={this.handleClick}>
         {this.props.isLargeScreen ? elems : elems.reverse()}
         <button
           type="button"
@@ -72,22 +72,17 @@ class ControlBar extends PureComponent {
           className="control-bar-button"
           disabled={isRedoDisabled}
           onClick={onRedoClick}
-        >{ControlBar.redo[+isLargeScreen]}</button>
+        >
+          {ControlBar.redo[+isLargeScreen]}
+        </button>
       </div>
     );
   }
 }
 
-ControlBar.redo = [
-  <MdRedo />,
-  "redo",
-];
+ControlBar.redo = [<MdRedo />, "redo"];
 
-ControlBar.undo = [
-  <MdUndo />,
-  "undo"
-];
-
+ControlBar.undo = [<MdUndo />, "undo"];
 
 ControlBar.propTypes = {
   isNewDisabled: PropTypes.bool.isRequired,
@@ -96,7 +91,7 @@ ControlBar.propTypes = {
   onNewClick: PropTypes.func.isRequired,
   onUndoClick: PropTypes.func.isRequired,
   onRedoClick: PropTypes.func.isRequired,
-  isLargeScreen: PropTypes.bool.isRequired,
-}
+  isLargeScreen: PropTypes.bool.isRequired
+};
 
 export default ControlBar;

@@ -2,7 +2,6 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 
 export default class OptionItem extends PureComponent {
-
   render() {
     return (
       <li
@@ -21,5 +20,5 @@ export default class OptionItem extends PureComponent {
 OptionItem.propTypes = {
   id: PropTypes.string.isRequired,
   isSelected: PropTypes.bool.isRequired,
-  text: PropTypes.string.isRequired,
-}
+  text: PropTypes.string.isRequired
+};

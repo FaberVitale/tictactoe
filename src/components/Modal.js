@@ -11,19 +11,26 @@ const modalContentClass = [
   "modal-visible",
   "modal-visible modal-trans-show"
 ];
+const modalButtonClass = [
+  "modal-close-button-hidden",
+  "modal-close-button-hidden",
+  "modal-close-button-visible",
+  "modal-close-button-hidden"
+];
 
 const mStates = {
   HIDDEN: 0,
   TRANS_HIDE: 1,
   VISIBLE: 2,
   TRANS_SHOW: 3
-}
+};
 
 /*Modal
  * instance fields: 
  *  - modalRoot: the HTMLElement root of the modal
  *  - activator: the element that had focus before the activation of the modal,
- *               it will get the focus back when the modal is in state TRANS_HIDE 
+ *               it will get the focus back when the modal is 
+ *               in state TRANS_HIDE 
  *  - state:
  *               mState: - represents the current modal state, 
  *               its value is one of the values of mStates enum
@@ -32,26 +39,26 @@ const mStates = {
 class Modal extends PureComponent {
   constructor(props) {
     super(props);
-
     this.state = {
       mState: mStates.HIDDEN
-    }
+    };
   }
-  getButtonRef = (closeButton) => {
-    this.closeButton = closeButton
-  }
-  getModalContentRef = (modalContent) => {
+
+  getButtonRef = closeButton => {
+    this.closeButton = closeButton;
+  };
+
+  getModalContentRef = modalContent => {
     this.modalContent = modalContent;
-  }
+  };
+
   componentWillMount() {
     this.modalRoot = $id("modal-root");
-
     if (!this.modalRoot) {
       this.modalRoot = document.createElement("div");
       this.modalRoot.setAttribute("id", "modal-root");
       document.body.appendChild(this.modalRoot);
     }
-
     this.activator = null;
   }
 
@@ -60,13 +67,14 @@ class Modal extends PureComponent {
     this.modalRoot.addEventListener("click", this.handleClickOutside);
     this.modalRoot.addEventListener("animationend", this.handleAnimEnd);
     /* a11y features for the modal 
-     * screen readers will consider the modal hidden as soon as it is in TRANS_HIDE state  
+     * screen readers will consider the modal hidden as soon as it is
+     * in TRANS_HIDE state  
     */
     this.modalRoot.setAttribute("role", "dialog");
     this.modalRoot.setAttribute("aria-hidden", "true");
-
     this.changeState(this.props.shouldShow, mStates.VISIBLE);
   }
+
   componentWillUnmount() {
     this.modalRoot.removeEventListener("click", this.handleClickOutside);
     this.modalRoot.removeEventListener("animationend", this.handleAnimEnd);
@@ -77,65 +85,64 @@ class Modal extends PureComponent {
     if (condition) {
       this.setState({
         mState: nextState
-      })
+      });
     }
-  }
+  };
+
   show = () => {
     if (this.state.mState === mStates.HIDDEN) {
       this.setState({
         mState: mStates.TRANS_SHOW
       });
     }
-  }
+  };
 
   hide = () => {
-    this.changeState(
-      this.state.mState === mStates.VISIBLE,
-      mStates.TRANS_HIDE
-    );
-
+    this.changeState(this.state.mState === mStates.VISIBLE, mStates.TRANS_HIDE);
     this.props.close();
-  }
+  };
 
-  handleClickOutside = (evt) => {
+  handleClickOutside = evt => {
     if (evt.target.id === "modal-root") {
       //closes the window and bubbles up the event through the portal
       this.closeButton.click();
     }
-  }
+  };
 
-  handleKeyEvents = (evt) => {
+  handleKeyEvents = evt => {
     if (this.state.mState !== mStates.VISIBLE) {
       return;
     }
-
     switch (evt.key) {
-      case "Escape":
-        //closes the window and bubbles up the event through the portal
+      case "Escape": //closes the window and bubbles up the event through the portal
         this.closeButton.click();
         break;
-      case "Tab":
-        //shift+Tab or just Tab
-        if (document.activeElement === this.closeButton) {
-          this.modalContent.focus();
-        }
-        else {
-          this.closeButton.focus();
-        }
+      case "Tab": //shift+Tab or just Tab
         evt.preventDefault();
         break;
       default:
     }
-  }
+  };
 
-  handleAnimEnd = (evt) => {
+  blurCB = () => {
+    if (
+      this.state.mState === mStates.VISIBLE &&
+      document.activeElement !== this.closeButton
+    ) {
+      this.closeButton.focus();
+    }
+  };
+
+  handleBlur = evt => {
+    setTimeout(this.blurCB, 10);
+  };
+
+  handleAnimEnd = evt => {
     if (evt.target !== this.modalRoot) {
       return;
     }
-
     let nextState = -1;
     let err = null;
-
     switch (this.state.mState) {
       case mStates.TRANS_HIDE:
         nextState = mStates.HIDDEN;
@@ -151,16 +158,14 @@ class Modal extends PureComponent {
       default:
         err = `invalid state ${this.state.mState}`;
     }
-
     if (nextState >= mStates.HIDDEN && nextState <= mStates.TRANS_SHOW) {
       this.setState({
         mState: nextState
-      })
-    }
-    else if (err && process.env.NODE_ENV !== "production") {
+      });
+    } else if (err && process.env.NODE_ENV !== "production") {
       console.warn(err);
     }
-  }
+  };
 
   componentWillReceiveProps(nextProps) {
     this.changeState(
@@ -170,7 +175,6 @@ class Modal extends PureComponent {
   }
 
   updateDOM = () => {
-
     switch (this.state.mState) {
       case mStates.VISIBLE:
         break;
@@ -191,24 +195,20 @@ class Modal extends PureComponent {
           console.warn(`illegal state modal state: ${this.state.mState}`);
         }
     }
-
-    this.modalRoot.className = modalContentClass[
-      this.state.mState
-    ];
-  }
+    this.modalRoot.className = modalContentClass[this.state.mState];
+  };
 
   componentDidUpdate() {
     window.requestAnimationFrame(this.updateDOM);
 
     const focused = document.activeElement;
+
     if (this.state.mState === mStates.TRANS_SHOW) {
       this.activator = document.activeElement;
     }
-    if (this.state.mState === mStates.VISIBLE &&
-      focused !== this.closeButton) {
+    if (this.state.mState === mStates.VISIBLE && focused !== this.closeButton) {
       this.closeButton.focus();
     }
-
     if (this.state.mState === mStates.TRANS_HIDE && this.activator) {
       this.activator.focus();
       this.activator = null;
@@ -217,27 +217,30 @@ class Modal extends PureComponent {
 
   render() {
     return ReactDOM.createPortal(
-      <div id="modal-content"
+      <div
+        id="modal-content"
         className={
-          this.state.mState === mStates.TRANS_HIDE ?
-            "modal-content-trans-hide" :
-            null
+          this.state.mState === mStates.TRANS_HIDE
+            ? "modal-content-trans-hide"
+            : null
         }
         ref={this.getModalContentRef}
         onKeyDown={this.handleKeyEvents}
+        onBlur={this.handleBlur}
         aria-label={this.props.title}
-        tabIndex={this.state.mState === mStates.VISIBLE ? "0" : null}
       >
         <button
           type="button"
           onClick={this.hide}
           id="modal-close-button"
           ref={this.getButtonRef}
+          className={modalButtonClass[this.state.mState]}
           aria-label="close"
-        >&times;</button>
+        >
+          &times;
+        </button>
         {this.props.children}
-      </div>
-      ,
+      </div>,
       this.modalRoot
     );
   }
@@ -248,6 +251,6 @@ Modal.propTypes = {
   shouldShow: PropTypes.bool.isRequired,
   children: PropTypes.any,
   close: PropTypes.func.isRequired
-}
+};
 
 export default Modal;
