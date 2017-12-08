@@ -20,6 +20,7 @@ footer > * {
   background-color: rgb(146, 162, 189);
   border-width: 0;
   outline: none;
+  user-select: none;
 }
 
 #footer-button:focus {

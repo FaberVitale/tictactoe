@@ -24,9 +24,19 @@ const BoardCell = class extends PureComponent {
     super(props);
 
     this.handleClick = props.handleClick(props.cellIndex);
+
     this.id = `cell-${this.props.cellIndex}`;
     this.prevCellState = -1;
   }
+
+  handleTouchStart = evt => {
+    // touch events fire on disabled buttons
+    if (this.props.isDisabled) {
+      return;
+    }
+
+    this.handleClick();
+  };
 
   componentWillUpdate() {
     this.prevCellState = this.props.cellState;
@@ -64,6 +74,7 @@ const BoardCell = class extends PureComponent {
         ref={this.getRef}
         className={mapStateToCellClassName[this.props.cellState]}
         onClick={this.handleClick}
+        onTouchStart={this.handleTouchStart}
         onAnimationEnd={this.handleAnimEnd}
         disabled={this.props.isDisabled}
         aria-label={`${this.props.ariaLabel}: ${symbToA11y[this.props.value]}`}

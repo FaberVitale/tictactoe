@@ -1,9 +1,10 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import "../css/modal.css";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import { $id } from "../util/functionUtil";
 import { rootId } from "../constants";
+import FaTimesCircle from "react-icons/lib/fa/times-circle";
 
 const modalContentClass = [
   "modal-hidden",
@@ -36,7 +37,7 @@ const mStates = {
  *               its value is one of the values of mStates enum
  */
 
-class Modal extends PureComponent {
+class Modal extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -126,6 +127,7 @@ class Modal extends PureComponent {
 
   blurCB = () => {
     if (
+      this.closeButton && //it doesnt trigger if the component is unmounted
       this.state.mState === mStates.VISIBLE &&
       document.activeElement !== this.closeButton
     ) {
@@ -237,7 +239,7 @@ class Modal extends PureComponent {
           className={modalButtonClass[this.state.mState]}
           aria-label="close"
         >
-          &times;
+          <FaTimesCircle />
         </button>
         {this.props.children}
       </div>,

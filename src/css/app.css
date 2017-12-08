@@ -9,6 +9,7 @@
 body {
   height: 100vh;
   background-color: rgb(225, 225, 230);
+  touch-action: manipulation;
 }
 
 /*
@@ -81,6 +82,7 @@ h1 {
   color: rgb(139, 164, 208);
   text-align: center;
   font-weight: bold;
+  user-select: none;
 }
 
 h2 {
@@ -103,7 +105,7 @@ section {
 }
 
 section > p {
-  line-height: 1.4em;
+  line-height: 1.2em;
 }
 
 section + section {
@@ -184,6 +186,7 @@ button::-moz-focus-inner {
 
 button {
   font-family: inherit;
+  touch-action: manipulation;
 }
 
 @keyframes fadeIn {

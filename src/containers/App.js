@@ -1,32 +1,78 @@
 import React, { Component } from "react";
-import TicTacToeMain from "./TicTacToeMain";
-import TicTacToeHeader from "./TicTacToeHeader";
-import TicTacToeInfoBar from "./TicTacToeInfoBar";
-import Keybinder from "./KeyBinder";
 import MediaQuery from "react-responsive";
 import { Provider } from "react-redux";
 import configureStore from "../configureStore";
 import "../css/app.css";
+import TicTacToeMain from "./TicTacToeMain";
+import TicTacToeHeader from "./TicTacToeHeader";
 import { mediaQueryWidth } from "../constants";
 
 const store = configureStore();
 
+const dynamicLoader = path => {
+  class DynamicLoader extends Component {
+    constructor(props) {
+      super(props);
+
+      this.state = {
+        component: null
+      };
+    }
+
+    storeComponent = esModule => {
+      this.setState({
+        component: esModule.default
+      });
+    };
+
+    logFail = err => {
+      if (process.env.NODE_ENV !== "production") {
+        console.warn(`failed fetch: ${path}.\n ${err}`);
+      }
+    };
+
+    componentDidMount() {
+      import(`${path}`).then(this.storeComponent, this.logFail);
+    }
+
+    shouldComponentUpdate(_, nextState) {
+      return !!(this.state.component || nextState.component);
+    }
+
+    render() {
+      const Comp = this.state.component;
+
+      return Comp ? <Comp {...this.props} /> : null;
+    }
+  }
+
+  return DynamicLoader;
+};
+
 class App extends Component {
-  mediaQCallback(matches) {
+  constructor(props) {
+    super(props);
+
+    this.keybinder = dynamicLoader("./KeyBinder");
+    this.infoBar = dynamicLoader("./TicTacToeInfoBar");
+  }
+
+  mediaQCallback = matches => {
     const content = [
       <TicTacToeMain key={0} isLargeScreen={matches} />,
-      <TicTacToeInfoBar key={1} isLargeScreen={matches} />
+      <this.infoBar key={1} isLargeScreen={matches} />
     ];
+
     return (
       <Provider store={store}>
         <div id="app">
-          <Keybinder />
+          <this.keybinder />
           <TicTacToeHeader isLargeScreen={matches} />
           {matches ? content : content.reverse()}
         </div>
       </Provider>
     );
-  }
+  };
 
   render() {
     return (

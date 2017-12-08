@@ -15,39 +15,14 @@
 #modal-root > * {
   text-align: left;
 }
-
+/*svg scales based on font size svg color -> color*/
 #modal-close-button {
   position: fixed;
-  border-top-left-radius: 18px;
-  border-top-right-radius: 18px;
-  border-bottom-right-radius: 17px;
-  border-bottom-left-radius: 17px;
-  padding-top: 0;
-  outline-width: 0px;
-  padding-bottom: 1px;
-  padding-left: 11px;
-  padding-right: 11px;
-  width: max-content;
-  background-color: rgb(190, 190, 200);
-  border-left: 0;
-  border-right: 0;
-  border-top: 0;
-  border-bottom: 2px solid rgba(25, 25, 25, 0.5);
-  box-shadow: inset 0px -3px 0px 0px rgb(148, 148, 177);
-  font-size: 30px;
-  transform: scaleY(0.75);
-}
-
-#modal-close-button:focus {
-  box-shadow: inset 0px -3px 0px 0px rgb(148, 148, 177),
-    0px 0px 5px 3px cornflowerblue;
-}
-
-#modal-close-button:active {
-  transform: translateY(3px) scaleY(0.75);
-  box-shadow: inset 0px -3px 0px -1px rgb(148, 148, 177),
-    0px 0px 5px 3px cornflowerblue;
-  border-bottom-width: 1px;
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  outline-width: 0;
+  color: rgb(55, 59, 66);
 }
 
 .modal-close-button-hidden {
@@ -105,32 +80,35 @@
 
 @media only screen and (min-device-width: 769px) {
   #modal-content {
-    padding: 5% 5%;
-    padding-right: 65px;
-    top: 10%;
-    left: 15%;
-    right: 15%;
+    padding: 3.5vw 5vw;
+    padding-right: 50px;
+    top: 10vh;
+    left: 15vw;
+    right: 15vw;
     max-height: 80%;
-    font-size: 20px;
+    font-size: 22px;
   }
+
   .modal-close-button-visible {
-    top: calc(10% + 12px);
-    right: calc(15% + 22px);
+    font-size: 40px;
+    top: 11vh;
+    right: calc(15vw + 20px);
   }
 }
 
 @media only screen and (max-device-width: 768px) {
   #modal-content {
-    top: 10%;
-    left: 10%;
-    right: 10%;
+    top: 10vh;
+    left: 10vw;
+    right: 10vw;
     max-height: 80%;
-    padding: 10% 10%;
-    padding-right: 65px;
+    padding: 10vw 12vw;
     font-size: calc(15.5vw * 0.3);
   }
+
   .modal-close-button-visible {
-    top: calc(10% + 4px);
-    right: calc(10% + 10px);
+    font-size: 8vw;
+    top: 10.5vh;
+    right: 11vw;
   }
 }

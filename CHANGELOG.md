@@ -1,5 +1,16 @@
 # Changelog
 
+## v 1.0.4
+
+* TicTacToeInfoBar.js and its dependencies are loaded dynamically using ```import()```
+* KeyBindings.js and its dependencies are loaded dynamically using ```import()``` 
+* changed layout and font size of modal content
+* changed modal close button to FontAwesome  *timesCirlcle* svg
+* text in option items no  longer moves slightly up when selected
+* applied ```user-select: none``` to the remaining elements that were selectable
+* cell buttons on touch-enabled devices will trigger on touch start instead of  on click
+* removed double-tap to zoom on browsers that support *touch-action* rule.
+
 ## v 1.0.3
 
 * reworked the focus trap of the modal

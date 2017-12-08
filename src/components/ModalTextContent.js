@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 const plus = " + ";
 const or = " | ";
+const separator = " - ";
 
 class ModalTextContent extends Component {
   shouldComponentUpdate() {
@@ -29,25 +30,30 @@ class ModalTextContent extends Component {
         <h3>Keyboard</h3>
         <ul className="keybindings-list">
           <li>
-            <kbd>w</kbd> <kbd>a</kbd> <kbd>s</kbd> <kbd>d</kbd> - select a cell
+            <kbd>w</kbd> <kbd>a</kbd> <kbd>s</kbd> <kbd>d</kbd>
+            {separator}select a cell
           </li>
           <li>
             <kbd>e</kbd>
             {or}
             <kbd>spacebar</kbd>
             {or}
-            <kbd>enter</kbd> - place a cross
+            <kbd>enter</kbd>
+            {separator}place a cross
           </li>
           <li>
-            <kbd>n</kbd> - play a new game
+            <kbd>n</kbd>
+            {separator}play a new game
           </li>
           <li>
-            <kbd>m</kbd> - select game mode
+            <kbd>m</kbd>
+            {separator}select game mode
           </li>
           <li>
             <kbd>ctrl</kbd>
             {plus}
-            <kbd>z</kbd> - undo
+            <kbd>z</kbd>
+            {separator}undo
           </li>
           <li>
             <kbd>ctrl</kbd>
@@ -58,7 +64,8 @@ class ModalTextContent extends Component {
             {or}
             <kbd>ctrl</kbd>
             {plus}
-            <kbd>y</kbd> - redo
+            <kbd>y</kbd>
+            {separator}redo
           </li>
         </ul>
       </section>,

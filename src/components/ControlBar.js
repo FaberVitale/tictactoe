@@ -23,6 +23,7 @@ class ControlBar extends PureComponent {
   componentDidUpdate() {
     if (this.targetClick && $disabled(this.targetClick)) {
       this.targetClick.blur();
+      this.targetClick = null;
     }
   }
 
