@@ -6,6 +6,7 @@ import "../css/app.css";
 import TicTacToeMain from "./TicTacToeMain";
 import TicTacToeHeader from "./TicTacToeHeader";
 import { mediaQueryWidth } from "../constants";
+import { warn } from "../util/functionUtil";
 
 const store = configureStore();
 
@@ -26,9 +27,7 @@ const dynamicLoader = path => {
     };
 
     logFail = err => {
-      if (process.env.NODE_ENV !== "production") {
-        console.warn(`failed fetch: ${path}.\n ${err}`);
-      }
+      warn(`failed fetch: ${path}.\n ${err}`);
     };
 
     componentDidMount() {

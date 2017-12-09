@@ -20,6 +20,7 @@ import {
 } from "../selectors";
 import { aiMove } from "../ai";
 import { symb, gameModeInv } from "../constants";
+import { warn } from "../util/functionUtil";
 
 export const setGameMode = val => (dispatch, getState) => {
   const key = gameModeInv[val];
@@ -46,12 +47,11 @@ export const undoRedoAction = actionType => (dispatch, getState) => {
         dispatch({ type: REDO_AI });
         break;
       default:
-        if (process.env.NODE_ENV !== "production") {
-          console.warn(
-            `undoRedoAction recieved an unknown action: ${actionType}
-              \nit accepts only UNDO, REDO actions`
-          );
-        }
+        warn(
+          `undoRedoAction recieved an unknown action: ${
+            actionType
+          }\nit accepts only UNDO, REDO actions`
+        );
     }
   } else if (actionType) {
     dispatch({ type: actionType });

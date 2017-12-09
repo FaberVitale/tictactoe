@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "../css/modal.css";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
-import { $id } from "../util/functionUtil";
+import { $id, warn } from "../util/functionUtil";
 import { rootId } from "../constants";
 import FaTimesCircle from "react-icons/lib/fa/times-circle";
 
@@ -164,8 +164,8 @@ class Modal extends Component {
       this.setState({
         mState: nextState
       });
-    } else if (err && process.env.NODE_ENV !== "production") {
-      console.warn(err);
+    } else {
+      warn(err);
     }
   };
 
@@ -193,9 +193,7 @@ class Modal extends Component {
       case mStates.HIDDEN:
         break;
       default:
-        if (process.env.NODE_ENV !== "production") {
-          console.warn(`illegal state modal state: ${this.state.mState}`);
-        }
+        warn(`illegal state modal state: ${this.state.mState}`);
     }
     this.modalRoot.className = modalContentClass[this.state.mState];
   };

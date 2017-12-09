@@ -20,3 +20,10 @@ export const defaultMergeProps = (stateProps, dispatchProps, ownProps) =>
   Object.assign({}, ownProps, stateProps, dispatchProps);
 
 export const areBoardsEqual = (next, prev) => getBoard(next) === getBoard(prev);
+
+export const warn = (function() {
+  if (process.env.NODE_ENV === "production") {
+    return () => {}; //noop
+  }
+  return console.warn.bind(console);
+})();

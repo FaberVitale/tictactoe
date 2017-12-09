@@ -21,10 +21,15 @@
   background-color: transparent;
   padding: 0;
   border: none;
-  outline-width: 0;
+  outline-width: 2px;
+  outline-offset: -1px;
+  outline-color: rgb(55, 59, 66);
   color: rgb(55, 59, 66);
 }
 
+#modal-close-button:focus {
+  outline-style: dashed;
+}
 .modal-close-button-hidden {
   display: none;
 }
@@ -80,8 +85,8 @@
 
 @media only screen and (min-device-width: 769px) {
   #modal-content {
-    padding: 3.5vw 5vw;
-    padding-right: 50px;
+    padding: 3.5vw 6vw;
+    padding-right: 60px;
     top: 10vh;
     left: 15vw;
     right: 15vw;
@@ -91,6 +96,7 @@
 
   .modal-close-button-visible {
     font-size: 40px;
+    line-height: 0.8em;
     top: 11vh;
     right: calc(15vw + 20px);
   }
@@ -102,7 +108,7 @@
     left: 10vw;
     right: 10vw;
     max-height: 80%;
-    padding: 10vw 12vw;
+    padding: 10vw 13vw;
     font-size: calc(15.5vw * 0.3);
   }
 

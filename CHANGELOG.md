@@ -1,5 +1,12 @@
 # Changelog
 
+## v 1.0.5
+
+* added outline and changed line-height of modal close button
+* tweaked modal content padding
+* refactored warning messages
+* updated core-js and eslint
+
 ## v 1.0.4
 
 * TicTacToeInfoBar.js and its dependencies are loaded dynamically using ```import()```

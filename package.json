@@ -1,6 +1,6 @@
 {
   "name": "tictactoe",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": {
     "name": "Fabrizio Vitale"
   },
@@ -11,7 +11,7 @@
   "homepage": "https://FaberVitale.github.io/tictactoe",
   "license": "MIT",
   "dependencies": {
-    "core-js": "^2.5.1",
+    "core-js": "^2.5.2",
     "mousetrap": "^1.6.1",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
-    "eslint": "^4.12.1",
+    "eslint": "^4.13.0",
     "eslint-config-react-app": "^2.0.1",
     "eslint-plugin-flowtype": "^2.39.1",
     "eslint-plugin-import": "^2.8.0",

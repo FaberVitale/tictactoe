@@ -1,5 +1,6 @@
 import { symb } from "../constants";
 import { getBoardInfo } from "../util/boardUtil";
+import { warn } from "../util/functionUtil";
 
 export default (zeroTurnMove, otherMoves = []) => (board, turn, ai) => {
   if (turn === 0) {
@@ -37,8 +38,7 @@ export default (zeroTurnMove, otherMoves = []) => (board, turn, ai) => {
     move = emptyCells[0];
   }
 
-  if (process.env.NODE_ENV !== "production") {
-    console.warn(errMessage);
-  }
+  warn(errMessage);
+
   return move;
 };
