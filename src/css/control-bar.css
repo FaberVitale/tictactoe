@@ -69,12 +69,8 @@
     width: 4.6em;
     transition: opacity 0.3s ease-in-out;
   }
-  .control-bar-button:active {
-    transform: scaleX(1.07);
-    border-radius: 6px;
-  }
+
   .control-bar-button:disabled {
-    transform: none;
     opacity: 0.295;
   }
 }

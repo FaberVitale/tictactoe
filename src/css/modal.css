@@ -108,13 +108,17 @@
     left: 10vw;
     right: 10vw;
     max-height: 80%;
-    padding: 10vw 13vw;
+    padding: 10vw 14vw;
     font-size: calc(15.5vw * 0.3);
   }
 
   .modal-close-button-visible {
-    font-size: 8vw;
+    font-size: 11vw;
     top: 10.5vh;
     right: 11vw;
+  }
+
+  #modal-close-button:focus {
+    outline-width: 0;
   }
 }

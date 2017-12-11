@@ -1,5 +1,12 @@
 # Changelog
 
+## v 1.0.6
+
+* control bar, listbox and about buttons no longer transform (scaleX) on :active state
+* changes to modal close button style
+* InfoBar is no longer dynamically loaded using `import()`
+* refactoring: moved dynamicLoader from `./containers/App.js` to `./components/dynamicLoader.js`
+
 ## v 1.0.5
 
 * added outline and changed line-height of modal close button

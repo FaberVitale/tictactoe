@@ -54,9 +54,6 @@ footer > * {
   #footer-button:focus {
     box-shadow: none;
   }
-  #footer-button:active {
-    transform: scale(1.03, 1.03);
-  }
 }
 
 @media only print {

@@ -155,9 +155,7 @@
   .listbox-theme:active > .listbox-button-theme {
     box-shadow: none;
   }
-  .listbox-theme:active > .listbox-button-theme {
-    transform: scale(1.03, 1.03);
-  }
+
   .option-item {
     padding: 10% 3%;
   }
