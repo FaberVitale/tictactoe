@@ -1,5 +1,11 @@
 # Changelog
 
+## v 1.0.7
+
+* added 512x512 icon
+* Changed color of the main Title, it has improved contrast
+* tweaked About button style,  `:hover` and `:focus` are now consistent with mode select
+
 ## v 1.0.6
 
 * control bar, listbox and about buttons no longer transform (scaleX) on :active state

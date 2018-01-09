@@ -28,7 +28,6 @@ footer > * {
 }
 
 #footer-button:active {
-  box-shadow: none;
   background-color: rgb(159, 177, 207);
 }
 
