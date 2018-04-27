@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { warn, impo } from "../util/functionUtil";
+import { warn } from "../util/functionUtil";
 
 const dynamicLoader = loader => {
   class DynamicLoader extends Component {
