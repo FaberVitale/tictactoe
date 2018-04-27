@@ -1,25 +1,30 @@
 {
   "name": "tictactoe",
-  "version": "1.0.7",
+  "version": "1.0.8",
+  "private": true,
   "author": {
     "name": "Fabrizio Vitale"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/FaberVitale/tictactoe"
+    "url": "https://github.com/FaberVitale/tictactoe.git"
   },
   "homepage": "https://FaberVitale.github.io/tictactoe",
   "license": "MIT",
   "dependencies": {
     "core-js": "^2.5.2",
+    "gh-pages": "^1.1.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.5",
     "mousetrap": "^1.6.1",
+    "prettier": "1.12.1",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-icons": "^2.2.7",
     "react-redux": "^5.0.6",
     "react-responsive": "^4.0.3",
-    "react-scripts": "1.0.17",
+    "react-scripts": "1.1.4",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1"
@@ -32,19 +37,6 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "precommit": "lint-staged"
-  },
-  "devDependencies": {
-    "babel-eslint": "^7.2.3",
-    "eslint": "^4.13.0",
-    "eslint-config-react-app": "^2.0.1",
-    "eslint-plugin-flowtype": "^2.39.1",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-react": "^7.5.1",
-    "gh-pages": "^1.1.0",
-    "husky": "^0.14.3",
-    "lint-staged": "^6.0.0",
-    "prettier": "1.8.2"
   },
   "lint-staged": {
     "*.{js,json,css}": ["prettier --write", "git add"]

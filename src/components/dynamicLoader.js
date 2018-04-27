@@ -3,13 +3,9 @@ import { warn } from "../util/functionUtil";
 
 const dynamicLoader = loader => {
   class DynamicLoader extends Component {
-    constructor(props) {
-      super(props);
-
-      this.state = {
-        component: null
-      };
-    }
+    state = {
+      component: null
+    };
 
     storeComponent = esModule => {
       this.setState({
@@ -32,7 +28,7 @@ const dynamicLoader = loader => {
     render() {
       const Comp = this.state.component;
 
-      return Comp ? <Comp {...this.props} /> : null;
+      return Comp ? React.createElement(Comp, this.props) : null;
     }
   }
 

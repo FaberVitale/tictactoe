@@ -6,7 +6,7 @@ import { symb, cellAriaLabel } from "../constants";
 import { placeSign } from "../actionCreators";
 import "../css/board-row.css";
 import propTypes from "prop-types";
-import { defaultMergeProps, areBoardsEqual } from "../util/functionUtil";
+import { areBoardsEqual } from "../util/functionUtil";
 
 const cellIndexes = [0, 1, 2];
 
@@ -80,6 +80,6 @@ TicTacToeRow.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-  defaultMergeProps,
+  null,
   connectOptions
 )(TicTacToeRow);

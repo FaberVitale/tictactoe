@@ -5,6 +5,8 @@ A Tic Tac Toe game written with [React](https://reactjs.org/),
 [Create-react-app ](https://github.com/facebookincubator/create-react-app)
 boilerplate.
 
+Supports recent browsers and IE 11.
+
 * [play it here](https://fabervitale.github.io/tictactoe)
 
 * [Changelog](./CHANGELOG.md)
