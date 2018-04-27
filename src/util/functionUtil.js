@@ -18,9 +18,6 @@ export const $id = id => document.getElementById(id);
 
 export const $disabled = elem => elem.hasAttribute("disabled");
 
-export const defaultMergeProps = (stateProps, dispatchProps, ownProps) =>
-  Object.assign({}, ownProps, stateProps, dispatchProps);
-
 export const areBoardsEqual = (next, prev) => getBoard(next) === getBoard(prev);
 
 export const warn =
