@@ -7,5 +7,9 @@ import { rootId } from "./constants";
 
 const root = document.getElementById(rootId);
 
-ReactDOM.render(<App />, root);
-registerServiceWorker();
+if (root !== null) {
+  ReactDOM.render(<App />, root);
+  registerServiceWorker();
+} else {
+  console.error("React root element is not present");
+}
