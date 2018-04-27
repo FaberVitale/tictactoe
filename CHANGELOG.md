@@ -1,5 +1,13 @@
 # Changelog
 
+## v 1.0.8
+
+* misc improvements
+* fixed wrong icon types and added 64x64 icon
+* updated several dependencies (n.b. prettier to latest)
+* various changed to package.json
+* switched from npm to yarn
+
 ## v 1.0.7
 
 * added 512x512 icon
