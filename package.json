@@ -1,12 +1,13 @@
 {
   "name": "tictactoe",
-  "version": "1.0.7",
+  "version": "1.0.8",
+  "private": true,
   "author": {
     "name": "Fabrizio Vitale"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/FaberVitale/tictactoe"
+    "url": "https://github.com/FaberVitale/tictactoe.git"
   },
   "homepage": "https://FaberVitale.github.io/tictactoe",
   "license": "MIT",
@@ -22,18 +23,7 @@
     "react-scripts": "1.0.17",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "reselect": "^3.0.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "precommit": "lint-staged"
-  },
-  "devDependencies": {
+    "reselect": "^3.0.1",
     "babel-eslint": "^7.2.3",
     "eslint": "^4.13.0",
     "eslint-config-react-app": "^2.0.1",
@@ -45,6 +35,15 @@
     "husky": "^0.14.3",
     "lint-staged": "^6.0.0",
     "prettier": "1.8.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "precommit": "lint-staged"
   },
   "lint-staged": {
     "*.{js,json,css}": ["prettier --write", "git add"]
