@@ -1,4 +1,4 @@
-import { symb, lines, symbScore, sides, edges } from "../constants";
+import { symb, lines, symbScore, sides, edges } from '../constants';
 
 export const winnerLine = (...lines) => {
   for (let i = 0, len = lines.length; i < len; i++) {
@@ -65,30 +65,30 @@ export const getBoardInfo = board => {
     lines: {
       [symb.x]: {
         single: [],
-        double: []
+        double: [],
       },
       [symb.o]: {
         single: [],
-        double: []
-      }
+        double: [],
+      },
     },
     corners: {
       [symb.x]: [],
       [symb.o]: [],
-      [symb.empty]: []
+      [symb.empty]: [],
     },
 
     sides: {
       [symb.x]: [],
       [symb.o]: [],
-      [symb.empty]: []
-    }
+      [symb.empty]: [],
+    },
   };
 
   for (let i = 0, len = lines.length; i < len; i++) {
     const score = lines[i].reduce(
       (acc, next) => acc + symbScore[board[next]],
-      0
+      0,
     );
 
     switch (score) {

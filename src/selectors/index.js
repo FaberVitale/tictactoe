@@ -1,4 +1,4 @@
-export { canUndo, canRedo, isNew } from "./undoRedoSelectors";
+export { canUndo, canRedo, isNew } from './undoRedoSelectors';
 export {
   getBoard,
   getModalState,
@@ -16,5 +16,5 @@ export {
   getGameModeVal,
   isPVP,
   getGameModeKey,
-  getGameModeIndex
-} from "./gameSelectors";
+  getGameModeIndex,
+} from './gameSelectors';

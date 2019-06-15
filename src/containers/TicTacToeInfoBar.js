@@ -1,13 +1,13 @@
-import React, { PureComponent } from "react";
-import Modal from "../components/Modal";
-import ModalTextContent from "../components/ModalTextContent";
-import TicTacToeModeSelect from "./TicTacToeModeSelect";
-import PropTypes from "prop-types";
-import TurnCounter from "./TurnCounter";
-import { OPEN_MODAL, CLOSE_MODAL } from "../constants/actions";
-import { getModalState } from "../selectors";
-import "../css/infoBar.css";
-import { connect } from "react-redux";
+import React, { PureComponent } from 'react';
+import Modal from '../components/Modal';
+import ModalTextContent from '../components/ModalTextContent';
+import TicTacToeModeSelect from './TicTacToeModeSelect';
+import PropTypes from 'prop-types';
+import TurnCounter from './TurnCounter';
+import { OPEN_MODAL, CLOSE_MODAL } from '../constants/actions';
+import { getModalState } from '../selectors';
+import '../css/infoBar.css';
+import { connect } from 'react-redux';
 
 class TicTacToeInfoBar extends PureComponent {
   render() {
@@ -47,19 +47,19 @@ TicTacToeInfoBar.propTypes = {
   isLargeScreen: PropTypes.bool.isRequired,
   isModalOpen: PropTypes.bool.isRequired,
   openModal: PropTypes.func.isRequired,
-  closeModal: PropTypes.func.isRequired
+  closeModal: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-  isModalOpen: getModalState(state)
+  isModalOpen: getModalState(state),
 });
 
 const mapDispatchToProps = dispatch => ({
   openModal: () => dispatch({ type: OPEN_MODAL }),
-  closeModal: () => dispatch({ type: CLOSE_MODAL })
+  closeModal: () => dispatch({ type: CLOSE_MODAL }),
 });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(TicTacToeInfoBar);

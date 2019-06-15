@@ -1,5 +1,5 @@
-import { getEmptyCellIndex, getCellThatCreatesFork } from "../util/boardUtil";
-import { symb, forkSpecialCases, opposingEdges } from "../constants";
+import { getEmptyCellIndex, getCellThatCreatesFork } from '../util/boardUtil';
+import { symb, forkSpecialCases, opposingEdges } from '../constants';
 
 export const lineLogic = {
   twoInLine: (board, boardInfo, ai, other, turn) => {
@@ -69,7 +69,7 @@ export const lineLogic = {
       }
     }
     return -1;
-  }
+  },
 };
 
 export const takeIfEmpty = {
@@ -95,10 +95,10 @@ export const takeIfEmpty = {
       return boardInfo.sides[symb.empty][0];
     }
     return -1;
-  }
+  },
 };
 
 export const turnZeroLogic = {
   takeCenterOrEdges: () => (Math.random() * 5) << 1,
-  takeRandomCell: () => (Math.random * 9) >>> 0
+  takeRandomCell: () => (Math.random * 9) >>> 0,
 };

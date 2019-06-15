@@ -1,13 +1,13 @@
-import { Component } from "react";
-import PropTypes from "prop-types";
-import Mousetrap from "mousetrap";
+import { Component } from 'react';
+import PropTypes from 'prop-types';
+import Mousetrap from 'mousetrap';
 
 class MousetrapWrapper extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      bindings: props.bindings
+      bindings: props.bindings,
     };
   }
 
@@ -33,7 +33,7 @@ class MousetrapWrapper extends Component {
 }
 
 MousetrapWrapper.propTypes = {
-  bindings: PropTypes.objectOf(PropTypes.func)
+  bindings: PropTypes.objectOf(PropTypes.func),
 };
 
 export default MousetrapWrapper;

@@ -1,20 +1,20 @@
-import React, { PureComponent } from "react";
-import "../css/listbox.css";
-import { FaCaretRight } from "react-icons/fa";
-import OptionItem from "./OptionItem";
-import PropTypes from "prop-types";
-import { throttle } from "../util/functionUtil";
-import { throttleTime } from "../constants";
+import React, { PureComponent } from 'react';
+import '../css/listbox.css';
+import { FaCaretRight } from 'react-icons/fa';
+import OptionItem from './OptionItem';
+import PropTypes from 'prop-types';
+import { throttle } from '../util/functionUtil';
+import { throttleTime } from '../constants';
 
 const optionListClassLists = {
-  visible: "option-list option-list-theme option-list-visible",
-  hidden: "option-list option-list-theme option-list-hidden",
-  hiddenAnimOver: "option-list option-list-theme option-list-anim-over"
+  visible: 'option-list option-list-theme option-list-visible',
+  hidden: 'option-list option-list-theme option-list-hidden',
+  hiddenAnimOver: 'option-list option-list-theme option-list-anim-over',
 };
 
 const svgAnimatorClassList = {
-  visible: "svg-animator rotate-90",
-  hidden: "svg-animator"
+  visible: 'svg-animator rotate-90',
+  hidden: 'svg-animator',
 };
 
 const getOptionClass = (isVisible, isAnimating) =>
@@ -34,7 +34,7 @@ export default class Listbox extends PureComponent {
 
     this.state = {
       isVisible: false,
-      isAnimating: false
+      isAnimating: false,
     };
   }
 
@@ -62,7 +62,7 @@ export default class Listbox extends PureComponent {
       if (prevState.isVisible !== visibility) {
         return {
           isVisible: visibility,
-          isAnimating: true
+          isAnimating: true,
         };
       }
     });
@@ -71,31 +71,31 @@ export default class Listbox extends PureComponent {
   handleKeyDown = throttle(throttleTime, e => {
     let isKnownKey = true;
     switch (e.key) {
-      case "ArrowUp":
-      case "ArrowLeft":
+      case 'ArrowUp':
+      case 'ArrowLeft':
         if (this.props.selectedIndex > 0) {
           this.props.handleItemClick(
-            this.props.items[this.props.selectedIndex - 1]
+            this.props.items[this.props.selectedIndex - 1],
           );
         }
         break;
 
-      case "ArrowDown":
-      case "ArrowRight":
+      case 'ArrowDown':
+      case 'ArrowRight':
         if (this.props.selectedIndex < this.props.items.length - 1) {
           this.props.handleItemClick(
-            this.props.items[this.props.selectedIndex + 1]
+            this.props.items[this.props.selectedIndex + 1],
           );
         }
         break;
 
-      case "Escape":
+      case 'Escape':
         if (this.state.isVisible) {
           this.setVisibility(false);
         }
         break;
-      case "Enter":
-      case " ": //Spacebar
+      case 'Enter':
+      case ' ': //Spacebar
         this.setVisibility(!this.state.isVisible);
         break;
       default:
@@ -115,7 +115,7 @@ export default class Listbox extends PureComponent {
     } else {
       let optionId = elem.id || elem.parentElement.id;
       this.props.handleItemClick(
-        this.props.items[getOptionIndex(this.props.id, optionId)]
+        this.props.items[getOptionIndex(this.props.id, optionId)],
       );
       this.setVisibility(false);
     }
@@ -129,7 +129,7 @@ export default class Listbox extends PureComponent {
 
   handleTransitionEnd = () =>
     this.setState({
-      isAnimating: false
+      isAnimating: false,
     });
 
   render() {
@@ -146,7 +146,7 @@ export default class Listbox extends PureComponent {
         aria-expanded={this.state.isVisible}
         aria-activedescendant={getOptionId(
           this.props.id,
-          this.props.selectedIndex
+          this.props.selectedIndex,
         )}
         aria-labelledby={this.props.label || null}
         aria-describedby={this.props.describer || null}
@@ -172,7 +172,7 @@ export default class Listbox extends PureComponent {
         <ul
           className={getOptionClass(
             this.state.isVisible,
-            this.state.isAnimating
+            this.state.isAnimating,
           )}
         >
           {this.makeList()}
@@ -188,5 +188,5 @@ Listbox.propTypes = {
   handleItemClick: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(PropTypes.string).isRequired,
   label: PropTypes.string,
-  describer: PropTypes.string
+  describer: PropTypes.string,
 };

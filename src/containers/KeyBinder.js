@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import MousetrapWrapper from "../components/MousetrapWrapper";
-import { connect } from "react-redux";
-import { getBoard, isGameOver, getModalState } from "../selectors";
-import { symb, throttleTime } from "../constants";
-import { throttle, $id, $disabled } from "../util/functionUtil";
+import React, { Component } from 'react';
+import MousetrapWrapper from '../components/MousetrapWrapper';
+import { connect } from 'react-redux';
+import { getBoard, isGameOver, getModalState } from '../selectors';
+import { symb, throttleTime } from '../constants';
+import { throttle, $id, $disabled } from '../util/functionUtil';
 
 const simulateClick = buttonId => {
   return () => {
@@ -30,8 +30,8 @@ const simulateClick = buttonId => {
 const throttledSimulateClick = throttle(throttleTime, simulateClick());
 
 const focusSelect = () => {
-  if (document.activeElement.id !== "mode-list") {
-    $id("mode-list").focus();
+  if (document.activeElement.id !== 'mode-list') {
+    $id('mode-list').focus();
   }
 };
 
@@ -54,7 +54,7 @@ class KeyBinder extends Component {
     const focusId = document.activeElement.id;
     let selected;
 
-    if (!focusId || !focusId.startsWith("cell-")) {
+    if (!focusId || !focusId.startsWith('cell-')) {
       selected = this.props.board.indexOf(symb.empty);
     } else {
       let currIndex = parseInt(focusId.slice(5), 10);
@@ -79,23 +79,23 @@ class KeyBinder extends Component {
 
   render() {
     const moveLeft = this.triggerIf(
-      throttle(throttleTime, this.move.bind(this, -1, false))
+      throttle(throttleTime, this.move.bind(this, -1, false)),
     );
 
     const moveRIght = this.triggerIf(
-      throttle(throttleTime, this.move.bind(this, 1, true))
+      throttle(throttleTime, this.move.bind(this, 1, true)),
     );
 
     const moveUp = this.triggerIf(
-      throttle(throttleTime, this.move.bind(this, -3, false))
+      throttle(throttleTime, this.move.bind(this, -3, false)),
     );
 
     const moveDown = this.triggerIf(
-      throttle(throttleTime, this.move.bind(this, 3, true))
+      throttle(throttleTime, this.move.bind(this, 3, true)),
     );
 
-    const undo = this.triggerIf(throttle(throttleTime, simulateClick("undo")));
-    const redo = this.triggerIf(throttle(throttleTime, simulateClick("redo")));
+    const undo = this.triggerIf(throttle(throttleTime, simulateClick('undo')));
+    const redo = this.triggerIf(throttle(throttleTime, simulateClick('redo')));
 
     return (
       <MousetrapWrapper
@@ -105,11 +105,11 @@ class KeyBinder extends Component {
           s: moveDown,
           d: moveRIght,
           e: this.triggerIf(throttledSimulateClick),
-          "ctrl+z": undo,
-          "ctrl+shift+z": redo,
-          "ctrl+y": redo,
-          n: this.triggerIf(throttle(throttleTime, simulateClick("new"))),
-          m: this.triggerIf(throttle(throttleTime, focusSelect))
+          'ctrl+z': undo,
+          'ctrl+shift+z': redo,
+          'ctrl+y': redo,
+          n: this.triggerIf(throttle(throttleTime, simulateClick('new'))),
+          m: this.triggerIf(throttle(throttleTime, focusSelect)),
         }}
       />
     );
@@ -119,10 +119,10 @@ class KeyBinder extends Component {
 const mapStateToProps = state => ({
   board: getBoard(state),
   isGO: isGameOver(state),
-  shouldTrigger: !getModalState(state)
+  shouldTrigger: !getModalState(state),
 });
 
 export default connect(
   mapStateToProps,
-  null
+  null,
 )(KeyBinder);

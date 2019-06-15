@@ -5,8 +5,8 @@ import {
   UNDO_AI,
   REDO,
   REDO_AI,
-  PLACE_SIGN_AI
-} from "../constants/actions";
+  PLACE_SIGN_AI,
+} from '../constants/actions';
 import {
   getNextPlayer,
   getBoard,
@@ -16,11 +16,11 @@ import {
   getGameModeKey,
   isPVP,
   isGameOver,
-  isCellEmpty
-} from "../selectors";
-import { aiMove } from "../ai";
-import { symb, gameModeInv } from "../constants";
-import { warn } from "../util/functionUtil";
+  isCellEmpty,
+} from '../selectors';
+import { aiMove } from '../ai';
+import { symb, gameModeInv } from '../constants';
+import { warn } from '../util/functionUtil';
 
 // Timeout of aiTimeoutCallback
 const AI_DELAY = 100;
@@ -30,7 +30,7 @@ export const setGameMode = val => (dispatch, getState) => {
   if (key && getGameModeKey(getState()) !== key) {
     dispatch({
       type: CHANGE_GAME_MODE,
-      payload: key
+      payload: key,
     });
   }
 };
@@ -52,7 +52,7 @@ export const undoRedoAction = actionType => (dispatch, getState) => {
       default:
         warn(
           `undoRedoAction recieved an unknown action: ${actionType}
-          it accepts only UNDO, REDO actions`
+          it accepts only UNDO, REDO actions`,
         );
     }
   } else if (actionType) {
@@ -65,15 +65,15 @@ const aiTimeoutCallback = (dispatch, newState) => {
     getBoard(newState),
     getTurn(newState),
     symb.o,
-    newState.gameMode
+    newState.gameMode,
   );
 
   dispatch({
     type: PLACE_SIGN_AI,
     payload: {
       pos,
-      symb: symb.o
-    }
+      symb: symb.o,
+    },
   });
 };
 
@@ -90,8 +90,8 @@ export const placeSign = pos => (dispatch, getState) => {
     type: PLACE_SIGN,
     payload: {
       pos,
-      symb: nextPlayer
-    }
+      symb: nextPlayer,
+    },
   });
 
   const newState = getState();

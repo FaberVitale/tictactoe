@@ -1,5 +1,5 @@
 //UNDO REDO SELECTORS
-import { isPVP } from "./gameSelectors";
+import { isPVP } from './gameSelectors';
 
 export const canUndo = state =>
   isPVP(state) ? state.game.past.length > 0 : state.game.past.length > 1;

@@ -1,29 +1,29 @@
-import React, { Component } from "react";
-import "../css/modal.css";
-import ReactDOM from "react-dom";
-import PropTypes from "prop-types";
-import { $id, warn } from "../util/functionUtil";
-import { rootId } from "../constants";
-import { FaTimesCircle } from "react-icons/fa";
+import React, { Component } from 'react';
+import '../css/modal.css';
+import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+import { $id, warn } from '../util/functionUtil';
+import { rootId } from '../constants';
+import { FaTimesCircle } from 'react-icons/fa';
 
 const modalContentClass = [
-  "modal-hidden",
-  "modal-trans-hide",
-  "modal-visible",
-  "modal-visible modal-trans-show"
+  'modal-hidden',
+  'modal-trans-hide',
+  'modal-visible',
+  'modal-visible modal-trans-show',
 ];
 const modalButtonClass = [
-  "modal-close-button-hidden",
-  "modal-close-button-hidden",
-  "modal-close-button-visible",
-  "modal-close-button-hidden"
+  'modal-close-button-hidden',
+  'modal-close-button-hidden',
+  'modal-close-button-visible',
+  'modal-close-button-hidden',
 ];
 
 const mStates = {
   HIDDEN: 0,
   TRANS_HIDE: 1,
   VISIBLE: 2,
-  TRANS_SHOW: 3
+  TRANS_SHOW: 3,
 };
 
 /*Modal
@@ -41,7 +41,7 @@ class Modal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mState: mStates.HIDDEN
+      mState: mStates.HIDDEN,
     };
   }
 
@@ -54,10 +54,10 @@ class Modal extends Component {
   };
 
   componentWillMount() {
-    this.modalRoot = $id("modal-root");
+    this.modalRoot = $id('modal-root');
     if (!this.modalRoot) {
-      this.modalRoot = document.createElement("div");
-      this.modalRoot.setAttribute("id", "modal-root");
+      this.modalRoot = document.createElement('div');
+      this.modalRoot.setAttribute('id', 'modal-root');
       document.body.appendChild(this.modalRoot);
     }
     this.activator = null;
@@ -65,27 +65,27 @@ class Modal extends Component {
 
   componentDidMount() {
     this.modalRoot.className = modalContentClass[mStates.HIDDEN];
-    this.modalRoot.addEventListener("click", this.handleClickOutside);
-    this.modalRoot.addEventListener("animationend", this.handleAnimEnd);
+    this.modalRoot.addEventListener('click', this.handleClickOutside);
+    this.modalRoot.addEventListener('animationend', this.handleAnimEnd);
     /* a11y features for the modal
      * screen readers will consider the modal hidden as soon as it is
      * in TRANS_HIDE state
      */
-    this.modalRoot.setAttribute("role", "dialog");
-    this.modalRoot.setAttribute("aria-hidden", "true");
+    this.modalRoot.setAttribute('role', 'dialog');
+    this.modalRoot.setAttribute('aria-hidden', 'true');
     this.changeState(this.props.shouldShow, mStates.VISIBLE);
   }
 
   componentWillUnmount() {
-    this.modalRoot.removeEventListener("click", this.handleClickOutside);
-    this.modalRoot.removeEventListener("animationend", this.handleAnimEnd);
-    this.modalRoot.removeAttribute("role");
+    this.modalRoot.removeEventListener('click', this.handleClickOutside);
+    this.modalRoot.removeEventListener('animationend', this.handleAnimEnd);
+    this.modalRoot.removeAttribute('role');
   }
 
   changeState = (condition, nextState) => {
     if (condition) {
       this.setState({
-        mState: nextState
+        mState: nextState,
       });
     }
   };
@@ -93,7 +93,7 @@ class Modal extends Component {
   show = () => {
     if (this.state.mState === mStates.HIDDEN) {
       this.setState({
-        mState: mStates.TRANS_SHOW
+        mState: mStates.TRANS_SHOW,
       });
     }
   };
@@ -104,7 +104,7 @@ class Modal extends Component {
   };
 
   handleClickOutside = evt => {
-    if (evt.target.id === "modal-root") {
+    if (evt.target.id === 'modal-root') {
       //closes the window and bubbles up the event through the portal
       this.closeButton.click();
     }
@@ -115,10 +115,10 @@ class Modal extends Component {
       return;
     }
     switch (evt.key) {
-      case "Escape": //closes the window and bubbles up the event through the portal
+      case 'Escape': //closes the window and bubbles up the event through the portal
         this.closeButton.click();
         break;
-      case "Tab": //shift+Tab or just Tab
+      case 'Tab': //shift+Tab or just Tab
         evt.preventDefault();
         break;
       default:
@@ -153,7 +153,7 @@ class Modal extends Component {
         nextState = mStates.VISIBLE;
         break;
       case mStates.HIDDEN:
-        err = "hidden modals should not have animations";
+        err = 'hidden modals should not have animations';
         break;
       case mStates.VISIBLE:
         break;
@@ -162,7 +162,7 @@ class Modal extends Component {
     }
     if (nextState >= mStates.HIDDEN && nextState <= mStates.TRANS_SHOW) {
       this.setState({
-        mState: nextState
+        mState: nextState,
       });
     } else {
       warn(err);
@@ -172,7 +172,7 @@ class Modal extends Component {
   componentWillReceiveProps(nextProps) {
     this.changeState(
       nextProps.shouldShow && this.state.mState === mStates.HIDDEN,
-      mStates.TRANS_SHOW
+      mStates.TRANS_SHOW,
     );
   }
 
@@ -181,14 +181,14 @@ class Modal extends Component {
       case mStates.VISIBLE:
         break;
       case mStates.TRANS_SHOW:
-        document.body.style.overflow = "hidden";
-        document.getElementById(rootId).setAttribute("aria-hidden", "true");
-        this.modalRoot.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = 'hidden';
+        document.getElementById(rootId).setAttribute('aria-hidden', 'true');
+        this.modalRoot.setAttribute('aria-hidden', 'false');
         break;
       case mStates.TRANS_HIDE:
-        document.body.style.overflow = "auto";
-        document.getElementById(rootId).removeAttribute("aria-hidden");
-        this.modalRoot.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = 'auto';
+        document.getElementById(rootId).removeAttribute('aria-hidden');
+        this.modalRoot.setAttribute('aria-hidden', 'true');
         break;
       case mStates.HIDDEN:
         break;
@@ -221,7 +221,7 @@ class Modal extends Component {
         id="modal-content"
         className={
           this.state.mState === mStates.TRANS_HIDE
-            ? "modal-content-trans-hide"
+            ? 'modal-content-trans-hide'
             : null
         }
         ref={this.getModalContentRef}
@@ -241,7 +241,7 @@ class Modal extends Component {
         </button>
         {this.props.children}
       </div>,
-      this.modalRoot
+      this.modalRoot,
     );
   }
 }
@@ -250,7 +250,7 @@ Modal.propTypes = {
   title: PropTypes.string.isRequired,
   shouldShow: PropTypes.bool.isRequired,
   children: PropTypes.any,
-  close: PropTypes.func.isRequired
+  close: PropTypes.func.isRequired,
 };
 
 export default Modal;

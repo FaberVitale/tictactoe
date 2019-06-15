@@ -5,43 +5,43 @@ import {
   NEW,
   UNDO_AI,
   REDO_AI,
-  CHANGE_GAME_MODE
-} from "../constants/actions";
+  CHANGE_GAME_MODE,
+} from '../constants/actions';
 
-const UNDO_INIT = "@@UNDOREDO/INIT";
+const UNDO_INIT = '@@UNDOREDO/INIT';
 
 const jumpBack = (past, present, future, times) => {
   if (times === 1) {
     return {
       past: past.slice(0, past.length - 1),
       present: past[past.length - 1],
-      future: [present, ...future]
+      future: [present, ...future],
     };
   }
   return {
     past: past.slice(0, past.length - times),
     present: past[past.length - times],
-    future: [...past.slice(past.length - times + 1), present, ...future]
+    future: [...past.slice(past.length - times + 1), present, ...future],
   };
 };
 
 const jumpForward = (past, present, future, times) => ({
   past: [...past, present, ...future.slice(0, times - 1)],
   present: future[times - 1],
-  future: future.slice(times)
+  future: future.slice(times),
 });
 
 const advance = (past, present, newPresent) => ({
   past: [...past, present],
   present: newPresent,
-  future: []
+  future: [],
 });
 
 export default reducer => {
   const initState = {
     past: [],
     present: reducer(undefined, { action: UNDO_INIT }), //the reducer provides the default state
-    future: []
+    future: [],
   };
 
   return (state = initState, action) => {

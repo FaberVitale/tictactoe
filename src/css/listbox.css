@@ -18,8 +18,8 @@
   outline: none;
 }
 
-.listbox-theme:focus[aria-expanded="true"],
-.listbox-theme:active[aria-expanded="true"] {
+.listbox-theme:focus[aria-expanded='true'],
+.listbox-theme:active[aria-expanded='true'] {
   box-shadow: none;
 }
 
@@ -120,7 +120,7 @@
   margin-top: 0.8em;
 }
 
-.option-item-theme[aria-selected="true"] {
+.option-item-theme[aria-selected='true'] {
   background-color: hsl(219, 50%, 75%);
 }
 

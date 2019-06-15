@@ -1,13 +1,13 @@
-import React from "react";
-import Listbox from "../components/Listbox";
-import { getGameModeIndex } from "../selectors";
-import { setGameMode } from "../actionCreators";
-import { gameModeValues } from "../constants";
-import { connect } from "react-redux";
-import "../css/top-bar.css";
+import React from 'react';
+import Listbox from '../components/Listbox';
+import { getGameModeIndex } from '../selectors';
+import { setGameMode } from '../actionCreators';
+import { gameModeValues } from '../constants';
+import { connect } from 'react-redux';
+import '../css/top-bar.css';
 
-const labelId = "mode-label";
-const listBoxId = "mode-list";
+const labelId = 'mode-label';
+const listBoxId = 'mode-list';
 
 const ModeSelect = ({ selectedIndex, handleItemClick }) => {
   return (
@@ -27,16 +27,16 @@ const ModeSelect = ({ selectedIndex, handleItemClick }) => {
 };
 
 const mapStateToProps = state => ({
-  selectedIndex: getGameModeIndex(state)
+  selectedIndex: getGameModeIndex(state),
 });
 
 const mapDispatchToProps = dispatch => ({
   handleItemClick: mode => {
     dispatch(setGameMode(mode));
-  }
+  },
 });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ModeSelect);

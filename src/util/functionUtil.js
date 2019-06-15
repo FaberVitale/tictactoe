@@ -1,4 +1,4 @@
-import { getBoard } from "../selectors";
+import { getBoard } from '../selectors';
 
 const noop = () => {};
 
@@ -16,14 +16,14 @@ export const throttle = (span, func, thisArg) => {
 
 export const $id = id => document.getElementById(id);
 
-export const $disabled = elem => elem.hasAttribute("disabled");
+export const $disabled = elem => elem.hasAttribute('disabled');
 
 export const areBoardsEqual = (next, prev) => getBoard(next) === getBoard(prev);
 
 export const warn =
-  process.env.NODE_ENV !== "production" &&
-  typeof window !== "undefined" &&
+  process.env.NODE_ENV !== 'production' &&
+  typeof window !== 'undefined' &&
   window.console != null &&
-  typeof window.console.warn === "function"
+  typeof window.console.warn === 'function'
     ? window.console.warn
     : noop;

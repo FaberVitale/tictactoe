@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { warn } from "../util/functionUtil";
+import React, { Component } from 'react';
+import { warn } from '../util/functionUtil';
 
 const dynamicLoader = loader => {
   class DynamicLoader extends Component {
     state = {
-      component: null
+      component: null,
     };
 
     storeComponent = esModule => {
       this.setState({
-        component: esModule.default
+        component: esModule.default,
       });
     };
 

@@ -1,6 +1,6 @@
-import React, { PureComponent } from "react";
-import TicTacToeModeSelect from "./TicTacToeModeSelect";
-import PropTypes from "prop-types";
+import React, { PureComponent } from 'react';
+import TicTacToeModeSelect from './TicTacToeModeSelect';
+import PropTypes from 'prop-types';
 
 class TicTacToeHeader extends PureComponent {
   render() {
@@ -14,7 +14,7 @@ class TicTacToeHeader extends PureComponent {
 }
 
 TicTacToeHeader.propTypes = {
-  isLargeScreen: PropTypes.bool.isRequired
+  isLargeScreen: PropTypes.bool.isRequired,
 };
 
 export default TicTacToeHeader;

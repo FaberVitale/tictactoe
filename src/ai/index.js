@@ -1,26 +1,26 @@
-import logicRunner from "./logicRunner";
-import { turnZeroLogic, takeIfEmpty, lineLogic } from "./logicSteps";
-import { gameMode } from "../constants";
+import logicRunner from './logicRunner';
+import { turnZeroLogic, takeIfEmpty, lineLogic } from './logicSteps';
+import { gameMode } from '../constants';
 
 const aiProfiles = {
   [gameMode.PVAI_EASY]: logicRunner(turnZeroLogic.takeRandomCell, [
     takeIfEmpty.side,
     takeIfEmpty.center,
-    takeIfEmpty.edge
+    takeIfEmpty.edge,
   ]),
   [gameMode.PVAI_MEDIUM]: logicRunner(turnZeroLogic.takeCenterOrEdges, [
     lineLogic.twoInLine,
     takeIfEmpty.center,
     takeIfEmpty.edge,
-    takeIfEmpty.side
+    takeIfEmpty.side,
   ]),
   [gameMode.PVAI_UNFAIR]: logicRunner(turnZeroLogic.takeCenterOrEdges, [
     lineLogic.twoInLine,
     lineLogic.fork,
     takeIfEmpty.center,
     takeIfEmpty.edge,
-    takeIfEmpty.side
-  ])
+    takeIfEmpty.side,
+  ]),
 };
 
 export const aiMove = (board, turn, ai, difficulty) => {

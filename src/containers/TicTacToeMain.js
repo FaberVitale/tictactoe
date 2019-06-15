@@ -1,8 +1,8 @@
-import React, { PureComponent } from "react";
-import TicTacToeRow from "./TicTacToeRow";
-import TicTacToeControlBar from "./TicTacToeControlBar";
-import "../css/board.css";
-import PropTypes from "prop-types";
+import React, { PureComponent } from 'react';
+import TicTacToeRow from './TicTacToeRow';
+import TicTacToeControlBar from './TicTacToeControlBar';
+import '../css/board.css';
+import PropTypes from 'prop-types';
 
 class TicTacToeMain extends PureComponent {
   render() {
@@ -18,14 +18,14 @@ class TicTacToeMain extends PureComponent {
         <div className="row-separator" aria-hidden="true" />
         <TicTacToeRow rowIndex={2} />
       </div>,
-      <TicTacToeControlBar isLargeScreen={this.props.isLargeScreen} key={1} />
+      <TicTacToeControlBar isLargeScreen={this.props.isLargeScreen} key={1} />,
     ];
     return <main>{this.props.isLargeScreen ? elems : elems.reverse()}</main>;
   }
 }
 
 TicTacToeMain.propTypes = {
-  isLargeScreen: PropTypes.bool.isRequired
+  isLargeScreen: PropTypes.bool.isRequired,
 };
 
 export default TicTacToeMain;

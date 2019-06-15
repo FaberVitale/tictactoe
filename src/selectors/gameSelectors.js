@@ -1,7 +1,7 @@
-import { createSelector } from "reselect";
-import { symb, gameMode } from "../constants";
-import { winnerLine } from "../util/boardUtil";
-import { countNot } from "../util/stringUtil";
+import { createSelector } from 'reselect';
+import { symb, gameMode } from '../constants';
+import { winnerLine } from '../util/boardUtil';
+import { countNot } from '../util/stringUtil';
 
 /* -- simple selectors -- */
 export const getBoard = state => state.game.present;
@@ -13,7 +13,7 @@ export const getRow = ind => state =>
 
 export const isCellEmpty = state => ind => getBoard(state)[ind] === symb.empty;
 
-export const isPVP = state => state.gameMode === "PVP";
+export const isPVP = state => state.gameMode === 'PVP';
 
 export const shouldAiAct = state => !(isPVP(state) || isGameOver(state));
 
@@ -29,36 +29,36 @@ export const getGameModeIndex = state =>
 export const getCol = [
   createSelector(
     getBoard,
-    board => `${board[0]}${board[3]}${board[6]}`
+    board => `${board[0]}${board[3]}${board[6]}`,
   ),
   createSelector(
     getBoard,
-    board => `${board[1]}${board[4]}${board[7]}`
+    board => `${board[1]}${board[4]}${board[7]}`,
   ),
   createSelector(
     getBoard,
-    board => `${board[2]}${board[5]}${board[8]}`
-  )
+    board => `${board[2]}${board[5]}${board[8]}`,
+  ),
 ];
 
 export const getMainDiag = createSelector(
   getBoard,
-  board => `${board[0]}${board[4]}${board[8]}`
+  board => `${board[0]}${board[4]}${board[8]}`,
 );
 
 export const getAntiDiag = createSelector(
   getBoard,
-  board => `${board[2]}${board[4]}${board[6]}`
+  board => `${board[2]}${board[4]}${board[6]}`,
 );
 
 export const getTurn = createSelector(
   getBoard,
-  countNot(symb.empty)
+  countNot(symb.empty),
 );
 
 export const getNextPlayer = createSelector(
   getTurn,
-  turn => (turn % 2 === 0 ? symb.x : symb.o)
+  turn => (turn % 2 === 0 ? symb.x : symb.o),
 );
 
 export const getWinnerLine = createSelector(
@@ -68,11 +68,11 @@ export const getWinnerLine = createSelector(
   getRow(1),
   getRow(2),
   ...getCol,
-  winnerLine
+  winnerLine,
 );
 
 export const isGameOver = createSelector(
   getWinnerLine,
   getTurn,
-  (winLine, turn) => winLine !== -1 || turn > 8
+  (winLine, turn) => winLine !== -1 || turn > 8,
 );

@@ -1,23 +1,23 @@
-import React, { PureComponent } from "react";
-import "../css/board-cell.css";
-import PropTypes from "prop-types";
-import { symbToA11y } from "../constants";
-import { lines } from "../constants";
-import { $disabled } from "../util/functionUtil";
+import React, { PureComponent } from 'react';
+import '../css/board-cell.css';
+import PropTypes from 'prop-types';
+import { symbToA11y } from '../constants';
+import { lines } from '../constants';
+import { $disabled } from '../util/functionUtil';
 
 export const cellStates = {
   IDLE: 0,
   FILLED: 1,
-  VICTORY: 2
+  VICTORY: 2,
 };
 
 const mapStateToCellClassName = [
-  "board-cell idle",
-  "board-cell disabled",
-  "board-cell disabled victory"
+  'board-cell idle',
+  'board-cell disabled',
+  'board-cell disabled victory',
 ];
 
-const mapStateToPClassName = ["empty", "filled-animated", "filled-animated"];
+const mapStateToPClassName = ['empty', 'filled-animated', 'filled-animated'];
 
 const BoardCell = class extends PureComponent {
   constructor(props) {
@@ -52,7 +52,7 @@ const BoardCell = class extends PureComponent {
       this.prevCellState === cellStates.VICTORY &&
       this.props.cellState === cellStates.FILLED
     ) {
-      return "filled";
+      return 'filled';
     }
 
     return mapStateToPClassName[this.props.cellState];
@@ -111,7 +111,7 @@ BoardCell.propTypes = {
   handleClick: PropTypes.func.isRequired,
   isDisabled: PropTypes.bool.isRequired,
   cellState: PropTypes.number.isRequired,
-  ariaLabel: PropTypes.string.isRequired
+  ariaLabel: PropTypes.string.isRequired,
 };
 
 export default BoardCell;

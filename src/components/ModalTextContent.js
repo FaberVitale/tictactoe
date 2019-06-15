@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-const plus = " + ";
-const or = " | ";
-const separator = " - ";
+const plus = ' + ';
+const or = ' | ';
+const separator = ' - ';
 
 class ModalTextContent extends Component {
   shouldComponentUpdate() {
@@ -16,7 +16,7 @@ class ModalTextContent extends Component {
         <p>
           Place 3 crosses in a line to Win.
           <br />
-          Select <em>easy, medium, unfair</em> to play against the ai or{" "}
+          Select <em>easy, medium, unfair</em> to play against the ai or{' '}
           <em>pvp</em> to play with a friend.
         </p>
       </section>,
@@ -26,7 +26,7 @@ class ModalTextContent extends Component {
         <p>
           Left Click to place a cross.
           <br />
-          Click on <em>new</em> to play a new game. Click on{" "}
+          Click on <em>new</em> to play a new game. Click on{' '}
           <em>undo or redo</em> to replay previous turns.
         </p>
         <h3>Keyboard</h3>
@@ -74,7 +74,7 @@ class ModalTextContent extends Component {
       <section key={2}>
         <h3>Author:</h3>
         <em>Fabrizio Vitale</em>
-      </section>
+      </section>,
     ];
   }
 }

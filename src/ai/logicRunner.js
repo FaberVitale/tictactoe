@@ -1,6 +1,6 @@
-import { symb } from "../constants";
-import { getBoardInfo } from "../util/boardUtil";
-import { warn } from "../util/functionUtil";
+import { symb } from '../constants';
+import { getBoardInfo } from '../util/boardUtil';
+import { warn } from '../util/functionUtil';
 
 export default (zeroTurnMove, otherMoves = []) => (board, turn, ai) => {
   if (turn === 0) {
@@ -22,18 +22,18 @@ export default (zeroTurnMove, otherMoves = []) => (board, turn, ai) => {
   let errMessage =
     turn >= 9
       ? "this function shouldn't be called on a filled board"
-      : "ai logic error";
+      : 'ai logic error';
 
   //recovery: try to return an empty cell if present
   const emptyCells = Array.prototype.reduce.call(
     board,
     (aggr, next, index) =>
       aggr > -1 ? aggr : next === symb.empty ? index : aggr,
-    -1
+    -1,
   );
 
   if (emptyCells.length > 0) {
-    errMessage += "\nrecovery: picked an empty cell";
+    errMessage += '\nrecovery: picked an empty cell';
 
     move = emptyCells[0];
   }

@@ -1,12 +1,12 @@
-import React from "react";
-import { connect } from "react-redux";
-import BoardCell from "../components/BoardCell";
-import { getRow, isGameOver, getWinnerLine } from "../selectors";
-import { symb, cellAriaLabel } from "../constants";
-import { placeSign } from "../actionCreators";
-import "../css/board-row.css";
-import propTypes from "prop-types";
-import { areBoardsEqual } from "../util/functionUtil";
+import React from 'react';
+import { connect } from 'react-redux';
+import BoardCell from '../components/BoardCell';
+import { getRow, isGameOver, getWinnerLine } from '../selectors';
+import { symb, cellAriaLabel } from '../constants';
+import { placeSign } from '../actionCreators';
+import '../css/board-row.css';
+import propTypes from 'prop-types';
+import { areBoardsEqual } from '../util/functionUtil';
 
 const cellIndexes = [0, 1, 2];
 
@@ -29,7 +29,7 @@ const TicTacToeRow = ({
   onCellClick,
   rowVals,
   isGameOver,
-  winnerLine
+  winnerLine,
 }) => {
   return (
     <div className="board-row">
@@ -40,7 +40,7 @@ const TicTacToeRow = ({
         const cellState = BoardCell.getCellState(
           winnerLine,
           isDisabled,
-          cellIndex
+          cellIndex,
         );
 
         return renderSquare(
@@ -48,7 +48,7 @@ const TicTacToeRow = ({
           onCellClick,
           value,
           cellState,
-          isDisabled
+          isDisabled,
         );
       })}
     </div>
@@ -58,15 +58,15 @@ const TicTacToeRow = ({
 const mapStateToProps = (state, ownProps) => ({
   rowVals: getRow(ownProps.rowIndex)(state),
   isGameOver: isGameOver(state),
-  winnerLine: getWinnerLine(state)
+  winnerLine: getWinnerLine(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-  onCellClick: cellIndex => () => dispatch(placeSign(cellIndex))
+  onCellClick: cellIndex => () => dispatch(placeSign(cellIndex)),
 });
 
 const connectOptions = {
-  areStatesEqual: areBoardsEqual
+  areStatesEqual: areBoardsEqual,
 };
 
 TicTacToeRow.propTypes = {
@@ -74,12 +74,12 @@ TicTacToeRow.propTypes = {
   onCellClick: propTypes.func.isRequired,
   rowVals: propTypes.string.isRequired,
   isGameOver: propTypes.bool.isRequired,
-  winnerLine: propTypes.number.isRequired
+  winnerLine: propTypes.number.isRequired,
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
   null,
-  connectOptions
+  connectOptions,
 )(TicTacToeRow);

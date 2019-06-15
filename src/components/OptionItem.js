@@ -1,5 +1,5 @@
-import React, { PureComponent } from "react";
-import PropTypes from "prop-types";
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 export default class OptionItem extends PureComponent {
   render() {
@@ -10,7 +10,7 @@ export default class OptionItem extends PureComponent {
         aria-selected={this.props.isSelected}
         id={this.props.id}
       >
-        <span>{this.props.isSelected ? "✓" : " "}</span>
+        <span>{this.props.isSelected ? '✓' : ' '}</span>
         <span>{this.props.text}</span>
       </li>
     );
@@ -20,5 +20,5 @@ export default class OptionItem extends PureComponent {
 OptionItem.propTypes = {
   id: PropTypes.string.isRequired,
   isSelected: PropTypes.bool.isRequired,
-  text: PropTypes.string.isRequired
+  text: PropTypes.string.isRequired,
 };

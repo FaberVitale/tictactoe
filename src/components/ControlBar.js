@@ -1,8 +1,8 @@
-import React, { PureComponent } from "react";
-import PropTypes from "prop-types";
-import "../css/control-bar.css";
-import { MdUndo, MdRedo } from "react-icons/md";
-import { $disabled } from "../util/functionUtil";
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import '../css/control-bar.css';
+import { MdUndo, MdRedo } from 'react-icons/md';
+import { $disabled } from '../util/functionUtil';
 
 class ControlBar extends PureComponent {
   constructor(props) {
@@ -34,7 +34,7 @@ class ControlBar extends PureComponent {
       onUndoClick,
       isRedoDisabled,
       onRedoClick,
-      isLargeScreen
+      isLargeScreen,
     } = this.props;
 
     const elems = [
@@ -59,7 +59,7 @@ class ControlBar extends PureComponent {
         onClick={onUndoClick}
       >
         {ControlBar.undo[+isLargeScreen]}
-      </button>
+      </button>,
     ];
 
     return (
@@ -80,9 +80,9 @@ class ControlBar extends PureComponent {
   }
 }
 
-ControlBar.redo = [<MdRedo />, "redo"];
+ControlBar.redo = [<MdRedo />, 'redo'];
 
-ControlBar.undo = [<MdUndo />, "undo"];
+ControlBar.undo = [<MdUndo />, 'undo'];
 
 ControlBar.propTypes = {
   isNewDisabled: PropTypes.bool.isRequired,
@@ -91,7 +91,7 @@ ControlBar.propTypes = {
   onNewClick: PropTypes.func.isRequired,
   onUndoClick: PropTypes.func.isRequired,
   onRedoClick: PropTypes.func.isRequired,
-  isLargeScreen: PropTypes.bool.isRequired
+  isLargeScreen: PropTypes.bool.isRequired,
 };
 
 export default ControlBar;
