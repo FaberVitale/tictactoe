@@ -86,10 +86,12 @@ export const getBoardInfo = board => {
   };
 
   for (let i = 0, len = lines.length; i < len; i++) {
-    const score = lines[i].reduce(
-      (acc, next) => acc + symbScore[board[next]],
-      0,
-    );
+    const [indexOne, indexTwo, indexThree] = lines[i];
+
+    const score =
+      symbScore[board[indexOne]] +
+      symbScore[board[indexTwo]] +
+      symbScore[board[indexThree]];
 
     switch (score) {
       case xSingleScore:
