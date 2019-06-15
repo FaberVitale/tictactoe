@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import "../css/listbox.css";
-import FaCaretRight from "react-icons/lib/fa/caret-right";
+import { FaCaretRight } from "react-icons/fa";
 import OptionItem from "./OptionItem";
 import PropTypes from "prop-types";
 import { throttle } from "../util/functionUtil";
@@ -21,8 +21,8 @@ const getOptionClass = (isVisible, isAnimating) =>
   isVisible
     ? optionListClassLists.visible
     : isAnimating
-      ? optionListClassLists.hidden
-      : optionListClassLists.hiddenAnimOver;
+    ? optionListClassLists.hidden
+    : optionListClassLists.hiddenAnimOver;
 
 const getOptionId = (parentId, index) => `${parentId}-option-${index}`;
 const getOptionIndex = (parentId, optionId) =>

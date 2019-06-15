@@ -9,7 +9,7 @@ class TicTacToeMain extends PureComponent {
     /*
      * reorder markup in order to not mess up
      *  the focus order for mobile screen-readers
-    */
+     */
     const elems = [
       <div className="board" key={0}>
         <TicTacToeRow rowIndex={0} />

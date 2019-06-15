@@ -15,6 +15,9 @@ const connectOptions = {
   areStatesEqual: areBoardsEqual
 };
 
-export default connect(mapStateToProps, null, null, connectOptions)(
-  TurnCounter
-);
+export default connect(
+  mapStateToProps,
+  null,
+  null,
+  connectOptions
+)(TurnCounter);

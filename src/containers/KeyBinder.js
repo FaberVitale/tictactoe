@@ -122,4 +122,7 @@ const mapStateToProps = state => ({
   shouldTrigger: !getModalState(state)
 });
 
-export default connect(mapStateToProps, null)(KeyBinder);
+export default connect(
+  mapStateToProps,
+  null
+)(KeyBinder);

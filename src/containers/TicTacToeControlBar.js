@@ -16,4 +16,7 @@ const mapDispatchToProps = dispatch => ({
   onRedoClick: () => dispatch(undoRedoAction(REDO))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ControlBar);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ControlBar);

@@ -1,6 +1,6 @@
-/* symb values should be single characters part of Unicode BMP. 
+/* symb values should be single characters part of Unicode BMP.
  * if character outside BMP are used, it should be added another object
- *  that maps symb keys to the characters to display in the BoardCells 
+ *  that maps symb keys to the characters to display in the BoardCells
  */
 export const symb = {
   x: "✗", //\u2717
@@ -38,7 +38,7 @@ export const gameModeInv = {
   pvp: "PVP"
 };
 
-export const mediaQueryWidth = "(min-device-width: 769px)";
+export const mediaQueryWidth = "(min-width: 769px)";
 
 export const cellAriaLabel = [
   "cell 1,1",

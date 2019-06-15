@@ -59,4 +59,7 @@ const mapDispatchToProps = dispatch => ({
   closeModal: () => dispatch({ type: CLOSE_MODAL })
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TicTacToeInfoBar);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TicTacToeInfoBar);

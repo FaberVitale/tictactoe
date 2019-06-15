@@ -1,8 +1,7 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import "../css/control-bar.css";
-import MdUndo from "react-icons/lib/md/undo";
-import MdRedo from "react-icons/lib/md/redo";
+import { MdUndo, MdRedo } from "react-icons/md";
 import { $disabled } from "../util/functionUtil";
 
 class ControlBar extends PureComponent {

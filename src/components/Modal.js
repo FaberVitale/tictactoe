@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import { $id, warn } from "../util/functionUtil";
 import { rootId } from "../constants";
-import FaTimesCircle from "react-icons/lib/fa/times-circle";
+import { FaTimesCircle } from "react-icons/fa";
 
 const modalContentClass = [
   "modal-hidden",
@@ -27,13 +27,13 @@ const mStates = {
 };
 
 /*Modal
- * instance fields: 
+ * instance fields:
  *  - modalRoot: the HTMLElement root of the modal
  *  - activator: the element that had focus before the activation of the modal,
- *               it will get the focus back when the modal is 
- *               in state TRANS_HIDE 
+ *               it will get the focus back when the modal is
+ *               in state TRANS_HIDE
  *  - state:
- *               mState: - represents the current modal state, 
+ *               mState: - represents the current modal state,
  *               its value is one of the values of mStates enum
  */
 
@@ -67,10 +67,10 @@ class Modal extends Component {
     this.modalRoot.className = modalContentClass[mStates.HIDDEN];
     this.modalRoot.addEventListener("click", this.handleClickOutside);
     this.modalRoot.addEventListener("animationend", this.handleAnimEnd);
-    /* a11y features for the modal 
+    /* a11y features for the modal
      * screen readers will consider the modal hidden as soon as it is
-     * in TRANS_HIDE state  
-    */
+     * in TRANS_HIDE state
+     */
     this.modalRoot.setAttribute("role", "dialog");
     this.modalRoot.setAttribute("aria-hidden", "true");
     this.changeState(this.props.shouldShow, mStates.VISIBLE);

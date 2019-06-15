@@ -36,4 +36,7 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModeSelect);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ModeSelect);
